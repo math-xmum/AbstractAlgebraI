@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Apr 10 15:31:40 2024\n"
+"POT-Creation-Date: Tue Apr  1 00:45:25 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -20,62 +20,206 @@ msgstr ""
 msgid "intermediate goal solved! 🎉"
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "Hello World"
+#: Game.Levels.BasicLean.L01_rfl
+msgid "Rfl tactic"
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
+#: Game.Levels.BasicLean.L01_rfl
+msgid "This level gets you familiar with the game interface."
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
+#: Game.Levels.BasicLean.L01_rfl
+msgid "The equality can be settaled by evaluation."
+msgstr ""
+
+#: Game.Levels.BasicLean.L01_rfl
+msgid "You can use either `rfl` or `norm_num`."
+msgstr ""
+
+#: Game.Levels.BasicLean.L01_rfl
+msgid "rfl and norm_num are very handy to close obvious goals."
+msgstr ""
+
+#: Game.Levels.BasicLean.L02_rw
+msgid "Rewrite"
+msgstr ""
+
+#: Game.Levels.BasicLean.L02_rw
+msgid "This level gets you familiar with the game interface."
+msgstr ""
+
+#: Game.Levels.BasicLean.L02_rw
+msgid "You can use rw [h] to rewrite `x` by `2`."
+msgstr ""
+
+#: Game.Levels.BasicLean.L02_rw
 msgid "You can either start using `«{h}»` or `«{g}»`."
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
+#: Game.Levels.BasicLean.L02_rw
 msgid "You should use `«{h}»` now."
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
+#: Game.Levels.BasicLean.L02_rw
 msgid "You should use `«{g}»` now."
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "This last message appears if the level is solved."
+#: Game.Levels.BasicLean.L02_rw
+msgid "rw is the most basic command you can use."
 msgstr ""
 
-#: Game.Levels.DemoWorld
-msgid "Demo World"
+#: Game.Levels.BasicLean
+msgid "Basic Lean"
 msgstr ""
 
-#: Game.Levels.DemoWorld
-msgid "This introduction is shown before one enters level 1 of the demo world. Use markdown."
+#: Game.Levels.BasicLean
+msgid "We start with some basic Lean tactics."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L01_identity
+msgid "Suppose $G$ is a set with a binary operation $*$.\n"
+"\n"
+"The following statement claims that identity element is unique.\n"
+"\n"
+"Suppose $e$ and $e'$ are two identity elements, we need to prove $e=e'$."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L01_identity
+msgid "Use `h1`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L01_identity
+msgid "Use `h4`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L02_assoc
+msgid "A semi-group is a set $G$ with a binary operation $*$ such that $*$ has associative law."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L02_assoc
+msgid "Use `group`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L03_inverse
+msgid "A  monoid is a semi-group with identity and .\n"
+"\n"
+"A  group is a monoid such that every element has inverse."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L03_inverse
+msgid "Use `a⁻¹`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L03_inverse
+msgid "Also can use And.intro to split the goal"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L03_inverse
+msgid "Use `group`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L03_inverse
+msgid "Use `group`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L04_inverse_unique
+msgid "Note that if inverse exits, then it is unique."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L04_inverse_unique
+msgid "Use `mul_one`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L04_inverse_unique
+msgid "Use `leftinvc`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L04_inverse_unique
+msgid "Use `assoc`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L04_inverse_unique
+msgid "Use `rightinvb`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L04_inverse_unique
+msgid "Use `one_mul`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L05_Zn
+msgid "Note that if inverse exits, then it is unique."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L05_Zn
+msgid "Use the definition to simplify the goal.\n"
+"You can use `simp [add_def]'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L05_Zn
+msgid "Use `ext' tactic"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L05_Zn
+msgid "Use `add_assoc'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L05_Zn
+msgid "Use the definition of neg"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L05_Zn
+msgid "Use `add_comm'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L06_Subgroup
+msgid "A subgroup of a group $G$ is a subset $H$ of $G$ such that $*$ is closed under $H$.\n"
+"We have a criterion for a subgroup:\n"
+"-- 1 ∈  H\n"
+"-- a ∈  H ∧ b ∈  H ⇒ a * b⁻¹ ∈ H\n"
+"-- For example  is a group under addition.\n"
+"Now the set of even integers, 2ℤ := {2n | n ∈ ℤ }, is a subgroup of ℤ.\n"
+"More generally, kℤ := {k*n | n ∈ ℤ } is also a subgroup of ℤ.\n"
+"Morover, all subgoup of ℤ is of the form kℤ for some k ∈ ℕ.\n"
+"\n"
+"In fact, ℕ → {subgroup of ℤ} given by k ↦ kℤ is a bijection."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L06_Subgroup
+msgid "Intro all elements"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L06_Subgroup
+msgid "Use Int.sub_emod"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L06_Subgroup
+msgid "Use hypothesis to simp the goal"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory
+msgid "Basic Group Theory"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory
+msgid "We now learn some basic Group Theory."
 msgstr ""
 
 #: Game
-msgid "Hello World Game"
+msgid "Abstract Algebra Game"
 msgstr ""
 
 #: Game
-msgid "This text appears on the starting page where one selects the world/level to play.\n"
-"You can use markdown."
+msgid "Welcome to the abstract algebra game!"
 msgstr ""
 
 #: Game
-msgid "Here you can put additional information about the game. It is accessible\n"
-"from the starting through the drop-down menu.\n"
-"\n"
-"For example: Game version, Credits, Link to Github and Zulip, etc.\n"
-"\n"
-"Use markdown."
+msgid "We plan to cover basic group theory, ring theory and Galois theory."
 msgstr ""
 
 #: Game
-msgid "Game Template"
+msgid "Abstract Algebra Game"
 msgstr ""
 
 #: Game
-msgid "You should use this game as a template for your own game and add your own levels."
+msgid "Abstract Algebra Game for MAT205 Xiamen University Malaysia."
 msgstr ""

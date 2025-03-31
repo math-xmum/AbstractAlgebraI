@@ -1,26 +1,22 @@
-import Game.Levels.DemoWorld
+import Game.Metadata
+import Game.Levels.BasicLean
+import Game.Levels.BasicGroupTheory
 
 -- Here's what we'll put on the title screen
-Title "Hello World Game"
+Title "Abstract Algebra Game"
 Introduction
 "
-This text appears on the starting page where one selects the world/level to play.
-You can use markdown.
+Welcome to the abstract algebra game!
 "
 
 Info "
-Here you can put additional information about the game. It is accessible
-from the starting through the drop-down menu.
-
-For example: Game version, Credits, Link to Github and Zulip, etc.
-
-Use markdown.
+We plan to cover basic group theory, ring theory and Galois theory.
 "
 
 /-! Information to be displayed on the servers landing page. -/
 Languages "English"
-CaptionShort "Game Template"
-CaptionLong "You should use this game as a template for your own game and add your own levels."
+CaptionShort "Abstract Algebra Game "
+CaptionLong "Abstract Algebra Game for MAT205 Xiamen University Malaysia."
 -- Prerequisites "" -- add this if your game depends on other games
 -- CoverImage "images/cover.png"
 
