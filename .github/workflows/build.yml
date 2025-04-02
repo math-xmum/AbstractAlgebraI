@@ -27,7 +27,6 @@ jobs:
       - name: get mathlib cache
         continue-on-error: true
         run: |
-          lake update GameServer
           lake exe cache clean
           # We've been seeing many failures at this step recently because of network errors.
           # As a band-aid, we try twice.
