@@ -21,5 +21,6 @@ Statement (e e' : G) (h1:∀ g :G,  e*g = g) (h2: ∀ g :G, g * e=g) (h3:∀ g :
   Hint "Use `h4` "
   rw [h4 e]
 
-NewTactic rw rfl apply exact omega «have»  «let» «show»
+
+NewTactic rw rfl apply exact omega «have»  «let» «show» «calc»
 NewTheorem have_intro
