@@ -45,17 +45,17 @@ lemma addsubgroup_make {G : Type*} [AddGroup G] (P : G → Prop) (h1 : P 0) (h2 
     simp only [zero_sub] at this
     exact this
 
-
 inductive SubSetP  (P : G → Prop)
- | set
+ | carrier
 
 
-instance (P : G → Prop): SetLike (SubSetP P) G where
+instance (P : α → Prop): SetLike (SubSetP P) α where
   coe := fun _ => {a  | P a}
   coe_injective' := by
     intro _ _
     simp
 
+/- For a prediction P, SubSetP defines the subset {a : α | P a} of α-/
 lemma SubSetP.def {s : SubSetP P} : a ∈ s ↔ P a := by rfl
 
 
