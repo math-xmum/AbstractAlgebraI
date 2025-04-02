@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Apr  2 13:15:27 2025\n"
+"POT-Creation-Date: Wed Apr  2 22:30:26 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -146,45 +146,18 @@ msgstr ""
 msgid "Use `one_mul`"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L05_Zn
-msgid "Let Z_n be the set of integers modulo $n$.\n"
-"Then Z_n form a commutative group (i.e. an Abelian group)."
-msgstr ""
-
-#: Game.Levels.BasicGroupTheory.L05_Zn
-msgid "Use the definition to simplify the goal.\n"
-"You can use `simp [add_def]'"
-msgstr ""
-
-#: Game.Levels.BasicGroupTheory.L05_Zn
-msgid "Use `ext' tactic"
-msgstr ""
-
-#: Game.Levels.BasicGroupTheory.L05_Zn
-msgid "Use `simp' to simplify the goal"
-msgstr ""
-
-#: Game.Levels.BasicGroupTheory.L05_Zn
-msgid "Use `add_assoc'"
-msgstr ""
-
-#: Game.Levels.BasicGroupTheory.L05_Zn
-msgid "Use the definition of neg"
-msgstr ""
-
-#: Game.Levels.BasicGroupTheory.L05_Zn
-msgid "Use `add_comm'"
-msgstr ""
-
-#: Game.Levels.BasicGroupTheory.L06_Subgroup
-msgid "A subgroup of a group $G$ is a subset $H$ of $G$ such that $*$ is closed under $H$.\n"
-"We have a criterion for a subgroup:\n"
+#: Game.Levels.BasicGroupTheory.L05_Subgroup_def
+msgid "A subgroup of a group $G$ is a nonempty subset $H$ of $G$ such that $*$ is closed under $H$ and inverse.\n"
 "\n"
-". 1 ∈  H\n"
+"We have a criterion for a set H to be a subgroup of $G$:\n"
+"If H is non-empty and a ∈  H ∧ b ∈  H implies a * b⁻¹ ∈ H\n"
+"then H is a subgroup of G\n"
 "\n"
-". a ∈  H ∧ b ∈  H ⇒ a * b⁻¹ ∈ H\n"
-"\n"
-"For example  is a group under addition.\n"
+"The follow theorem show that,"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L06_kZ
+msgid "For example ℤ is a group under addition.\n"
 "Now the set of even integers, 2ℤ := {2n | n ∈ ℤ }, is a subgroup of ℤ.\n"
 "More generally, kℤ := {k*n | n ∈ ℤ } is also a subgroup of ℤ.\n"
 "Morover, all subgoup of ℤ is of the form kℤ for some k ∈ ℕ.\n"
@@ -192,73 +165,103 @@ msgid "A subgroup of a group $G$ is a subset $H$ of $G$ such that $*$ is closed 
 "In fact, ℕ → {subgroup of ℤ} given by k ↦ kℤ is a bijection."
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L06_Subgroup
+#: Game.Levels.BasicGroupTheory.L06_kZ
 msgid "Intro all elements"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L06_Subgroup
+#: Game.Levels.BasicGroupTheory.L06_kZ
 msgid "Use Int.sub_emod"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L06_Subgroup
+#: Game.Levels.BasicGroupTheory.L06_kZ
 msgid "Use hypothesis to simp the goal"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L07_Commutator
+#: Game.Levels.BasicGroupTheory.L07_Zn
+msgid "Let Z_n be the set of integers modulo $n$.\n"
+"Then Z_n form a commutative group (i.e. an Abelian group)."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L07_Zn
+msgid "Use the definition to simplify the goal.\n"
+"You can use `simp [add]'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L07_Zn
+msgid "Use `ext' tactic"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L07_Zn
+msgid "Use `simp' to simplify the goal"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L07_Zn
+msgid "Use `add_assoc'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L07_Zn
+msgid "Use the definition of neg"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L07_Zn
+msgid "Use `add_comm'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L08_Commutator
 msgid "A `⁅a,b⁆:=a * b * a⁻¹ * b⁻¹' is called the commutator of $a$ and $b$.\n"
 "\n"
 "A group is abelian if all commutators are one."
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L07_Commutator
+#: Game.Levels.BasicGroupTheory.L08_Commutator
 msgid "Use `constructor' to split the goal into two parts"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L07_Commutator
+#: Game.Levels.BasicGroupTheory.L08_Commutator
 msgid "replace `a * b'  by `b * a' using the hypothesis"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L07_Commutator
+#: Game.Levels.BasicGroupTheory.L08_Commutator
 msgid "Use `group' to finish the proof"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L07_Commutator
+#: Game.Levels.BasicGroupTheory.L08_Commutator
 msgid "apply `mul_right_cancel' twice to translate the goal"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L07_Commutator
+#: Game.Levels.BasicGroupTheory.L08_Commutator
 msgid "Rewrite the left hand side using the hypothesis"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L07_Commutator
+#: Game.Levels.BasicGroupTheory.L08_Commutator
 msgid "Use `group' to finish the proof"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L08_ElementaryTwoGroup
+#: Game.Levels.BasicGroupTheory.L09_ElementaryTwoGroup
 msgid "If $G$ is a group such that $a * a = 1$ for all $a in G$, then $G$ is abelian."
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L08_ElementaryTwoGroup
+#: Game.Levels.BasicGroupTheory.L09_ElementaryTwoGroup
 msgid "Use `mul_right_cancel' to translate the goal"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L08_ElementaryTwoGroup
+#: Game.Levels.BasicGroupTheory.L09_ElementaryTwoGroup
 msgid "Use the hypothesis"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L08_ElementaryTwoGroup
+#: Game.Levels.BasicGroupTheory.L09_ElementaryTwoGroup
 msgid "Use `group' to finish the proof"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L08_ElementaryTwoGroup
+#: Game.Levels.BasicGroupTheory.L09_ElementaryTwoGroup
 msgid "Use «{inv_eq_self}» smartly"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L08_ElementaryTwoGroup
+#: Game.Levels.BasicGroupTheory.L09_ElementaryTwoGroup
 msgid "You can use `nth_rw' to specify the location of the term to rewrite"
 msgstr ""
 
-#: Game.Levels.BasicGroupTheory.L08_ElementaryTwoGroup
+#: Game.Levels.BasicGroupTheory.L09_ElementaryTwoGroup
 msgid "Use `group' to finish the proof"
 msgstr ""
 
