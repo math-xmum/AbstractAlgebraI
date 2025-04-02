@@ -6,9 +6,12 @@ World "BasicGroupTheory"
 Level 5
 
 Introduction "
-Note that if inverse exits, then it is unique.
+Let Z_n be the set of integers modulo $n$.
+Then Z_n form a commutative group (i.e. an Abelian group).
 "
 open Monoid
+
+variable {n: ℕ+}
 
 lemma CommGroup_mk {G : Type*}
 (add: G → G → G) (zero : G)
@@ -24,23 +27,28 @@ lemma CommGroup_mk {G : Type*}
   mul_left_inv := add_left_inv
   mul_comm := add_comm
 
-def add (a b : Fin (n.succ)): Fin (n+1) := ⟨(a.1+b.1)%(n+1), by apply Nat.mod_lt;linarith⟩
+/- add a b is defined to be (an1-/
+def add (a b : Fin (n)): Fin (n) := ⟨(a.1+b.1)%(n), by apply Nat.mod_lt;exact n.2⟩
 
-lemma add_def (a b : Fin (n.succ)): add a b = ⟨(a.1+b.1)%(n+1), by apply Nat.mod_lt;linarith⟩ := rfl
+lemma add_def (a b : Fin (n)): add a b = ⟨(a.1+b.1)%(n), by apply Nat.mod_lt;exact n.2⟩ := rfl
 
-abbrev zero : Fin (n+1) := ⟨0, by linarith⟩
+abbrev zero : Fin n := ⟨0, n.2⟩
 
-lemma zero_def : (zero : Fin (n+1))= ⟨(0:ℕ) , by linarith⟩ := rfl
+lemma zero_def : (zero : Fin (n.1))= ⟨0 ,n.2⟩ := rfl
 
-abbrev neg (a :Fin (n+1)): Fin (n+1) := ⟨(n+1 -a)%(n+1), by apply Nat.mod_lt;linarith⟩
+abbrev neg (a :Fin (n)): Fin (n) := ⟨(n -a)%(n), by apply Nat.mod_lt;exact n.2⟩
 
-lemma neg_def (a :Fin (n+1)): neg a = ⟨(n+1 -a)%(n+1), by apply Nat.mod_lt;linarith⟩ := rfl
+lemma neg_def (a :Fin (n)): neg a = ⟨(n-a)%(n), by apply Nat.mod_lt;exact n.2⟩ := rfl
 
-lemma ext_lemma (a b: Fin (n+1)): a.1 = b.1 → a = b := by
+@[simp]
+lemma ext_lemma (a b: Fin (n+1)):  a = b ↔ a.1 = b.1:= by
+  constructor
+  . omega
   intro h
   ext; exact h
 
-Statement (n: ℕ): CommGroup (Fin (n+1)) :=
+
+Statement : CommGroup (Fin (n)) :=
   by
     apply CommGroup_mk add zero neg
     · intro a
@@ -49,11 +57,15 @@ Statement (n: ℕ): CommGroup (Fin (n+1)) :=
       simp [add_def]
       Hint "Use `ext' tactic"
       ext
-      simp only [Nat.mod_succ_eq_iff_lt, Fin.is_lt]
+      Hint "Use `simp' to simplify the goal"
+      simp only
+      apply (Nat.mod_eq_iff_lt $ Nat.not_eq_zero_of_lt (n.2)).2
+      exact a.2
     · intro a
       simp [add_def]
       ext
-      simp only [Nat.mod_succ_eq_iff_lt, Fin.is_lt]
+      apply (Nat.mod_eq_iff_lt $ Nat.not_eq_zero_of_lt (n.2)).2
+      exact a.2
     · intro a b c
       simp only [add_def, Nat.mod_add_mod, Nat.add_mod_mod, Fin.mk.injEq]
       Hint "Use `add_assoc' "
@@ -67,6 +79,6 @@ Statement (n: ℕ): CommGroup (Fin (n+1)) :=
       rw [add_comm]
 
 
-
-NewTactic use rw rfl apply group constructor intro ext simp simp_rw linarith
-NewTheorem CommGroup_mk add zero neg add_def zero_def neg_def ext_lemma add_assoc add_comm Nat.mod_succ_eq_iff_lt Fin.is_lt Nat.mod_add_mod  Nat.add_mod_mod  Fin.mk.injEq Fin.is_le' Nat.sub_add_cancel Nat.mod_self Fin.zero_eta Nat.add_comm
+NewTactic use rw rfl apply group constructor intro ext simp simp_rw linarith exact
+NewTheorem CommGroup_mk add_def zero_def neg_def ext_lemma add_assoc add_comm Nat.mod_succ_eq_iff_lt Fin.is_lt Nat.mod_add_mod  Nat.add_mod_mod  Fin.mk.injEq Fin.is_le' Nat.sub_add_cancel Nat.mod_self Fin.zero_eta Nat.add_comm Nat.not_eq_zero_of_lt Nat.mod_eq_iff_lt
+NewDefinition add neg zero

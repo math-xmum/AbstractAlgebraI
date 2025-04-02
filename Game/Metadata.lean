@@ -16,3 +16,6 @@ a suggestion.
 in a random order. Therefore, you should keep the structure of one file lean file per world
 that imports all its levels.
 -/
+
+
+lemma have_intro {Q : Prop} (P : Prop) (p : P) : (P→Q) → Q  := fun h => h p

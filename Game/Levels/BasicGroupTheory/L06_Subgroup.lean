@@ -8,9 +8,12 @@ Level 6
 Introduction "
 A subgroup of a group $G$ is a subset $H$ of $G$ such that $*$ is closed under $H$.
 We have a criterion for a subgroup:
--- 1 ∈  H
--- a ∈  H ∧ b ∈  H ⇒ a * b⁻¹ ∈ H
--- For example  is a group under addition.
+
+. 1 ∈  H
+
+. a ∈  H ∧ b ∈  H ⇒ a * b⁻¹ ∈ H
+
+For example  is a group under addition.
 Now the set of even integers, 2ℤ := {2n | n ∈ ℤ }, is a subgroup of ℤ.
 More generally, kℤ := {k*n | n ∈ ℤ } is also a subgroup of ℤ.
 Morover, all subgoup of ℤ is of the form kℤ for some k ∈ ℕ.
@@ -62,7 +65,7 @@ lemma neg_mem {G : Type*} [AddGroup G] (P : G → Prop) (h1 : P 0) (h2 :∀ {a b
     simp only [zero_sub] at this
     exact this
 
-lemma addsubgroupcalss_make {G : Type*} [AddGroup G] (P : G → Prop) (h1 : P 0) (h2 :∀ {a b:G}, P a → P b → P (a - b)): AddSubgroupClass (SubSetP P) G where
+lemma addsubgroupclass_make {G : Type*} [AddGroup G] (P : G → Prop) (h1 : P 0) (h2 :∀ {a b:G}, P a → P b → P (a - b)): AddSubgroupClass (SubSetP P) G where
   zero_mem := by
     intro s
     exact h1
@@ -84,7 +87,7 @@ lemma addsubgroupcalss_make {G : Type*} [AddGroup G] (P : G → Prop) (h1 : P 0)
 
 Statement : AddSubgroupClass (SubSetP (· %k = 0)) ℤ :=
   by
-    apply addsubgroupcalss_make
+    apply addsubgroupclass_make
     · simp
     Hint "Intro all elements"
     intro a b
@@ -95,4 +98,4 @@ Statement : AddSubgroupClass (SubSetP (· %k = 0)) ℤ :=
     simp [ha,hb]
 
 
-NewTheorem SubSetP.def Int.sub_emod addsubgroupcalss_make
+NewTheorem SubSetP.def Int.sub_emod addsubgroupclass_make
