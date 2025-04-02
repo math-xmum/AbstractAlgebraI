@@ -55,9 +55,12 @@ instance (P : α → Prop): SetLike (SubSetP P) α where
     intro _ _
     simp
 
-/- For a prediction P, SubSetP defines the subset {a : α | P a} of α-/
+/--
+ For a prediction P, SubSetP defines the subset {a : α | P a} of α
+-/
 lemma SubSetP.def {s : SubSetP P} : a ∈ s ↔ P a := by rfl
 
+--LemmaDoc SubSetP.def as "SubSetP.def" in  "SubSet" "For a prediction P, SubSetP defines the subset {a : α | P a} of α"
 
 lemma neg_mem {G : Type*} [AddGroup G] (P : G → Prop) (h1 : P 0) (h2 :∀ {a b:G}, P a → P b → P (a - b)): ∀ a : G, P a → P (-a) := by
     intro x hx
