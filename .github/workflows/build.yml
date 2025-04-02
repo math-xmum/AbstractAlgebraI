@@ -27,13 +27,12 @@ jobs:
       - name: get mathlib cache
         continue-on-error: true
         run: |
+          lake update GameServer
           lake exe cache clean
           # We've been seeing many failures at this step recently because of network errors.
           # As a band-aid, we try twice.
           # The 'sleep 1' is small pause to let the network recover.
           lake exe cache get || (sleep 1; lake exe cache get)
-          lake update -R
-          lake update GameServer
 
       - name: create timestamp file
         run: touch tmp_timestamp
