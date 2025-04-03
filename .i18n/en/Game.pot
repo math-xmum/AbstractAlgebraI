@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Apr  2 22:30:26 2025\n"
+"POT-Creation-Date: Thu Apr  3 09:52:30 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -263,6 +263,143 @@ msgstr ""
 
 #: Game.Levels.BasicGroupTheory.L09_ElementaryTwoGroup
 msgid "Use `group' to finish the proof"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L10_Coset_mem
+msgid "Let H be a subgroup of G.\n"
+"The subset g • H := {gh | h∈H} for some g∈G is called a left coset of H.\n"
+"\n"
+"We first prove the simple fact that\n"
+"x ∈ g • H ↔ g⁻¹ * x ∈ H\n"
+"\n"
+"The above lemma is called `mem_leftCoset_iff' in Mathlib."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L10_Coset_mem
+msgid "Note that x ∈ g • H means ∃ h: G,  h ∈ H ∧  g * h = x. Use `obtain' to obtain the anxiety element h.\n"
+"For example, one can use\n"
+"`obtain ⟨h, hh1,hh2⟩ := h1'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L10_Coset_mem
+msgid "Use `simp' to clear up «{hh2}»"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L10_Coset_mem
+msgid "Rewrite using «{hh2}»"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L10_Coset_mem
+msgid "The goal can be cleared by `simp'/`group' and `assumption'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L10_Coset_mem
+msgid "Intro the assumption."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L10_Coset_mem
+msgid "Use `g⁻¹ * x'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L10_Coset_mem
+msgid "The goal can be cleared by `simp'/`group' and `assumption'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Let H be a subgroup of G.\n"
+"The subset g • H := {gh | h∈H} for some g∈G is called a left coset of H.\n"
+"\n"
+"Basically all cosets are essentially the same in the sense that there is a natural bijection between g H and k H for arbitrary g k ∈ G.\n"
+"\n"
+"In Lean, a bijection between two types α and β is represented by the type `Equiv α β'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Use `constructor' to expend the definition of Equiv"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Pick the 3rd goal, which required to define a map from g • H to k • H using `pick_goal 3'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Define the map g • H ∋ x ↦ (k * g⁻¹)*x. On can achive this by using `use fun x => ⟨(k * g⁻¹)*x, ?_⟩'\n"
+"Here we need to prove that the function is well defined, i.e.  `(k * g⁻¹)*x ∈ k • H'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "x ∈ g • H means ∃ h ∈ H, g • h = x"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "One can clear up the expression in «{hh}» by `simp at «{hh}»'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "To show k * g⁻¹ * ↑x ∈ k • H, one should provide an element a in h such that k g⁻¹ x  = k a. Ore one can try to replace x by g*h first and simplify the expression using `group'."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Now `use h'."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Now construct the inverse function by  `pick_goal 3'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "This is the same as the first case. We let you to practice by yourself."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Now `use h'."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "`Function.LeftInverse g f' means ∀ x, g (f x) = x. So we use `intro' to reveal the goal."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Since `x' is a subtype, `y = x' if and only if the `y.1 = x.1'. Use `ext' to reduced the problem to comparing the values hold in  y and x."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Use `simp' to clear up the goal"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "Use `group' to finish the proof."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L11_Coset_def
+msgid "This is similar to the pervious case."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L12_Coset_eq
+msgid "Let H be a subgroup of G.\n"
+"Then g • H = k • H if and only if k⁻¹ * g ∈ H.\n"
+"\n"
+"We now prove only if part of this statement first."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L12_Coset_eq
+msgid "Note that g ∈ g • H."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L12_Coset_eq
+msgid "Use 1"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L12_Coset_eq
+msgid "By definition 1 is certainly in H, but you still need to explicitly point it out using `Subgroup.one_mem'"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L12_Coset_eq
+msgid "Now use «{h1}» by rewrite the right hand side of «{hg}» (rw [«{h1}»] at «{hg}»)"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L12_Coset_eq
+msgid "Apply `mem_leftCoset_iff' and the rest is trivial."
 msgstr ""
 
 #: Game.Levels.BasicGroupTheory
