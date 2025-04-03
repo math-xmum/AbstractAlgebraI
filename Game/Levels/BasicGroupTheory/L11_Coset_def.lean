@@ -15,10 +15,14 @@ In Lean, a bijection between two types α and β is represented by the type `Equ
 "
 
 open Monoid Group
-open scoped Pointwise
 
 variable {G : Type*} [Group G] {g k:G} {H : Set G}
 
+
+open scoped Pointwise
+open Pointwise
+
+instance : HSMul G (Set G) (Set G):=inferInstance
 
 Statement :
   Equiv (g • H :Set G) (k • H : Set G):= by
