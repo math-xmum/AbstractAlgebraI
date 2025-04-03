@@ -17,12 +17,13 @@ The above lemma is called `mem_leftCoset_iff' in Mathlib.
 
 open Monoid Group
 open scoped Pointwise
+open Pointwise
 
 
 
 variable {G : Type*} [Group G] {g x:G} {H : Set G}
 
-instance : HSMul G (Set G) (Set G):=inferInstance
+--instance : HSMul G (Set G) (Set G):=inferInstance
 
 Statement : x ∈ g • H ↔ g⁻¹ * x ∈ H := by
   constructor

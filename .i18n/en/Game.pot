@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Apr  3 09:52:30 2025\n"
+"POT-Creation-Date: Thu Apr  3 10:33:59 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -157,7 +157,7 @@ msgid "A subgroup of a group $G$ is a nonempty subset $H$ of $G$ such that $*$ i
 msgstr ""
 
 #: Game.Levels.BasicGroupTheory.L06_kZ
-msgid "For example ℤ is a group under addition.\n"
+msgid "For example, ℤ is a group under addition.\n"
 "Now the set of even integers, 2ℤ := {2n | n ∈ ℤ }, is a subgroup of ℤ.\n"
 "More generally, kℤ := {k*n | n ∈ ℤ } is also a subgroup of ℤ.\n"
 "Morover, all subgoup of ℤ is of the form kℤ for some k ∈ ℕ.\n"

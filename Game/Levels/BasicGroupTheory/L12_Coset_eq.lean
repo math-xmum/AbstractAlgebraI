@@ -16,7 +16,7 @@ open Monoid Group
 open scoped Pointwise
 
 variable {G : Type*} [Group G] {g :G} {H : Subgroup G}
-
+open Pointwise
 
 Statement  :(g • (H : Set G)  = k • (H : Set G)) → k⁻¹ * g ∈ H:= by
     intro h1
