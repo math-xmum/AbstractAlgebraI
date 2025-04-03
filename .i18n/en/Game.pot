@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Apr  3 10:33:59 2025\n"
+"POT-Creation-Date: Thu Apr  3 17:26:25 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -400,6 +400,96 @@ msgstr ""
 
 #: Game.Levels.BasicGroupTheory.L12_Coset_eq
 msgid "Apply `mem_leftCoset_iff' and the rest is trivial."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "Let H be a subgroup of G.\n"
+"\n"
+"Every left coset g • H is an H-orbit under the right translation action:\n"
+"Let x ∈ g • H. If y is also in g • H, then there is an element h ∈ H such that x * h = y.  Since `h = x⁻¹ * y`, it means `x⁻¹ * y ∈ H`.\n"
+"The reverse direction is also true.\n"
+"We now prove this.\n"
+"\n"
+"Later we call this\n"
+"`Subgroup.mem_coset_iff_diff_mem_subgroup`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "Use `constructor` to split the goals."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "Use `mem_leftCoset_iff` to translate\n"
+"x ∈ g • H into g⁻¹ x ∈ H."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "Note that x⁻¹ * y = (g⁻¹ * x)⁻¹ * (g⁻¹ * y).\n"
+"You can use `have\n"
+"have hxy :x⁻¹ * y = (g⁻¹ * x)⁻¹ * (g⁻¹ * y) := by group` to establish this claim."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "Use «{hxy}» to rewrite the goal."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "If `a ∈ H`, `b ∈ H`, then `a⁻¹ * b ∈ H`. This is Subgroup.mem_of_inv_mul_mem"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "Since x ∈ g • H, we have g⁻¹ x ∈ H.\n"
+"Therefore, that `y = x * (x⁻¹ * y) = g * ((g⁻¹ * x) * (x⁻¹ * y)) ` for some h∈H."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "We start to execute the above argument with `intro hxy`."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "Now use `mem_leftCoset_iff` to translate «{hx}» into g⁻¹ * x ∈ H."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "Now use ((g⁻¹*x) * (x⁻¹ *y)) to closed the goal."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "Use `constructor` to split the Goal"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "This follows from `Subgroup.mul_mem`, «{hxy}» and «{hgx}»."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L13_Coset_transitive
+msgid "This is follows from the group law. Consider to use `group` and `simp` tactic to clear up the goal."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L14_Coset_disjoint
+msgid "Let H be a subgroup of G.\n"
+"For two cosets g • H and k • H, either\n"
+"g • H ∩ k • H = ∅  or g • H = k • H.\n"
+"Moreover, g • H = k • H if and only if k⁻¹ * g ∈ H.\n"
+"\n"
+"We now prove these statements"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L14_Coset_disjoint
+msgid "By classical logic, P ∨ Q is equivalent to ¬ P → Q.\n"
+"Rewrite using `Classical.or_iff_not_imp_left` to translate the goal into ¬ P → Q."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L14_Coset_disjoint
+msgid "Now introduce a hypothesis `hypo : ¬ (g • H :Set G) = (k • H : Set G)`"
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L14_Coset_disjoint
+msgid "By `Subgroup.mem_coset_iff_diff_mem_subgroup`, z ∈ g • H ↔ z⁻¹ * x ∈ H. One can use rewrite to replace z ∈ g • H with z⁻¹ * x ∈ H."
+msgstr ""
+
+#: Game.Levels.BasicGroupTheory.L14_Coset_disjoint
+msgid "Do the same thing for z ∈ k • H. If you use `rw` The goal is automatically closed since `rw` all rewrite the goal and then apply `rfl`. If you wish to prevent this, you can use the tactic `rewrite` instead."
 msgstr ""
 
 #: Game.Levels.BasicGroupTheory
