@@ -22,7 +22,7 @@ variable {G : Type*} [Group G] {g k:G} {H : Set G}
 open scoped Pointwise
 open Pointwise
 
-instance : HSMul G (Set G) (Set G):=inferInstance
+--instance : HSMul G (Set G) (Set G):=inferInstance
 
 Statement :
   Equiv (g • H :Set G) (k • H : Set G):= by
