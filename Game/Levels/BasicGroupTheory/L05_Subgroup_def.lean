@@ -13,7 +13,6 @@ If H is non-empty and a ∈  H ∧ b ∈  H implies a * b⁻¹ ∈ H
 then H is a subgroup of G
 
 The follow theorem this criterion.
-
 "
 open Monoid Group
 

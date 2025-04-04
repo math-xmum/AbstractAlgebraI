@@ -70,12 +70,3 @@ theorem C2_prod_C2_not_cyclic {C : Type u_1} [Group C] [Fintype C]  (h : Nat.car
   specialize orderle2 g
   Hint "Clearly {hg} and {orderle2} are contradictory relations for natural numbers. These type of problem can be automaticaly proved by `linarith`."
   linarith
-
-
-
-
-
-#check isCyclic_of_orderOf_eq_card
-
-NewTactic rewrite push_neg
-NewTheorem Classical.or_iff_not_imp_left Classical.or_iff_not_imp_right Subgroup.mem_coset_iff_diff_mem_subgroup
