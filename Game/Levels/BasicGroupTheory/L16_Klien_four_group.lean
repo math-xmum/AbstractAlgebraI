@@ -27,16 +27,55 @@ Pick an element 1 ≠ g ∈ G. The strategy is to prove that the subgroup genera
 open Monoid Group
 open scoped Pointwise
 
-variable {G : Type*} [Group G] {g :G} {H : Subgroup G}
 
-open Pointwise
-instance : HSMul G (Set G) (Set G):=inferInstance
 
 theorem C2_prod_C2_not_cyclic {C : Type u_1} [Group C] [Fintype C]  (h : Nat.card C = 2) : ¬ IsCyclic (C × C) := by
   intro H
-  rw [isCyclic_iff_exists_orderOf_eq_natCard] at H
+  Hint "First observe that |C × C| = 4. This is a consequence of `Nat.card_prod` and {h}."
+  have order4 : Nat.card (C × C) = 4 := by simp only [Nat.card_prod,h]
+  Hint "If G is a finite cyclic group, then there is an element g ∈ G such that g^|G| = 1. This is the theorem `IsCyclic.exists_ofOrder_eq_natCard`. Establish this claim by using
+  `replace H := IsCyclic.exists_ofOrder_eq_natCard (h:=H)`
+  "
+  replace h1 := IsCyclic.exists_ofOrder_eq_natCard (h:=H)
+  Hint "Rewrite the claim {H} using {order4}."
+  rw [order4] at h1
+  Hint "On the other hand, every element g in C × C satisfies
+  g^2 = 1, which implies that they have order less than or equal to 2.
+
+  This is because all elements in C satisfy c^2 = 1 by `pow_card_eq_one'` which stats g^(Nat.card G) = 1.
+  Since `pow_card_eq_one'` is marked as @[simp],
+  one establish the claim by
+  `have square_one (c : C × C) : c ^ 2 = 1 := by simp [<-h]`
+  "
+  have square_one (c : C) : c ^ 2 = 1 := by simp [<-h]
+  Hint "Now we can establish g^2 =1 for all g∈ C×C.
+  Note that g^2 =1 means g.1^2 = 1 and g.2^2 =1.
+  This is the place we must invoke `ext` tactic.
+  Then one can close the goal simply by `simp [square_one]`
+  "
+  replace square_one (c : C × C) : c ^ 2 = 1 := by
+    ext<;>simp [square_one]
+  Hint "Look the statement of `orderOf_le_of_pow_eq_one`"
+  have orderle2 : ∀ g : C × C, orderOf g ≤ 2 := by
+    intro g
+    apply orderOf_le_of_pow_eq_one
+    Hint "Use `norm_num` or `linarith`"
+    linarith
+    Hint "Use {square_one} to clear up the goal."
+    simp [square_one]
+  Hint "{order4} and {orderle2} are contradictory.
+  To finish the proof, first take an element g satisfying {h1} by `obtain` tactic."
+  obtain ⟨g, hg⟩ := h1
+  Hint "Now `specialize` {orderle2} to g."
+  specialize orderle2 g
+  Hint "Clearly {hg} and {orderle2} are contradictory relations for natural numbers. These type of problem can be automaticaly proved by `linarith`."
+  linarith
 
 
+
+
+
+#check isCyclic_of_orderOf_eq_card
 
 NewTactic rewrite push_neg
 NewTheorem Classical.or_iff_not_imp_left Classical.or_iff_not_imp_right Subgroup.mem_coset_iff_diff_mem_subgroup

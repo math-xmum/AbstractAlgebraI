@@ -6,7 +6,7 @@ World "BasicGroupTheory"
 Level 8
 
 Introduction "
-A `⁅a,b⁆:=a * b * a⁻¹ * b⁻¹' is called the commutator of $a$ and $b$.
+The expression `⁅a,b⁆:=a * b * a⁻¹ * b⁻¹' is called the commutator of $a$ and $b$.
 
 A group is abelian if all commutators are one.
 "

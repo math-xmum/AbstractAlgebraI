@@ -2,7 +2,6 @@ import Mathlib.Tactic
 
 import Mathlib.GroupTheory.GroupAction.Basic
 import Mathlib.GroupTheory.SpecificGroups.Cyclic
-
 import Mathlib.Deprecated.Subgroup
 
 section Subgroup

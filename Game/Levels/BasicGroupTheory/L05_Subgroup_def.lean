@@ -12,7 +12,7 @@ We have a criterion for a set H to be a subgroup of $G$:
 If H is non-empty and a ∈  H ∧ b ∈  H implies a * b⁻¹ ∈ H
 then H is a subgroup of G
 
-The follow theorem show that,
+The follow theorem this criterion.
 
 "
 open Monoid Group
@@ -39,7 +39,7 @@ lemma IsSubgroup.stepmk (h1 : 1 ∈H) (h2 : (1∈H)→(∀ {a}, a∈H →  a⁻�
   · exact ⟨h1, h3 h1  (h2 h1)⟩
   exact h2 h1
 
-lemma aa (h1 : H.Nonempty) (h2 :∀ {a b:G}, (a∈H) → (b∈H) → ((a * b⁻¹)∈H)) : IsSubgroup H := by
+Statement (h1 : H.Nonempty) (h2 :∀ {a b:G}, (a∈H) → (b∈H) → ((a * b⁻¹)∈H)) : IsSubgroup H := by
   Hint "Unfold the definition using `IsSubgroup.stepmk'."
   apply IsSubgroup.stepmk
   · Hint "Note that `H.Nonempty = ∃ x , x ∈ H'. One can use obtain ⟨x,hx⟩ := h1 to use the existance statement h1. Here `⟨' and `⟩' can be typed by `\\<' and `\\>' respectively.  "
