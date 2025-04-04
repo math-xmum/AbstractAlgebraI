@@ -1,6 +1,9 @@
-import Mathlib.GroupTheory.GroupAction.Basic
 import Mathlib.Tactic
 
+import Mathlib.GroupTheory.GroupAction.Basic
+import Mathlib.GroupTheory.SpecificGroups.Cyclic
+
+import Mathlib.Deprecated.Subgroup
 
 section Subgroup
 variable {G : Type*} [Group G] {H : Subgroup G} {a b g: G}

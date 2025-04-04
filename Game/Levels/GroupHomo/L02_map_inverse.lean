@@ -25,7 +25,8 @@ Statement (f : H →* G) : ∀ h : H,  f h⁻¹ = (f h)⁻¹  := by
   rw [mul_eq_one_iff_eq_inv] at hh
   assumption
 
-
+open scoped Pointwise
+#check (1 : ZMod 6) +ᵥ ({1,2,3}: Set (ZMod 6))
 
 
 
