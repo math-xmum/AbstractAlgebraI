@@ -54,5 +54,4 @@ lemma aa : addOrderOf (1 : ZMod 4) = 4 := by
 
 
 
-
 end order
