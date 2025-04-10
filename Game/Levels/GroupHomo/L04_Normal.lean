@@ -5,6 +5,7 @@ import Game.Generator.Basic
 World "GroupHomomorphism"
 
 open scoped Pointwise
+open Pointwise
 
 Level 4
 
@@ -21,7 +22,7 @@ variable {G H:Type*} [Group G] (N : Subgroup G)
 #check Subgroup.Normal.conj_mem
 
 Statement : N.Normal ↔ ∀ g h : G,  (g • (N :Set G)) * (h • N) = (g * h) • N := by
-  Hint "Use constructor to split the statement into two directions."
+  Hint "Use `constructor` to split the statement into two directions."
   constructor
   · Hint "Introduces all the necessary hypotheses and free variables."
     intro H g h
@@ -32,15 +33,15 @@ Statement : N.Normal ↔ ∀ g h : G,  (g • (N :Set G)) * (h • N) = (g * h) 
     constructor
     · Hint "Introduces all the necessary hypotheses and free variables."
       intro hx
-      Hint "Apply the `Set.mem_mul_set_iff` rewrite rule at hypothesis `hx` to transform the membership condition in terms of a product of elements from the left and right sets. This will express `hx` as the existence of two elements whose product equals `x`."
+      Hint "Apply the `Set.mem_mul_set_iff` rewrite rule at hypothesis {hx} to transform the membership condition in terms of a product of elements from the left and right sets. This will express {hx} as the existence of two elements whose product equals {x}."
       rw [Set.mem_mul_set_iff] at hx
-      Hint "Decompose the existential statement `hx` into individual components `a`, `b`, `ha`, `hb`, and `hab`, to extract elements from the cosets `g • ↑N` and `h • ↑N` and establish their product relation.
+      Hint "Decompose the existential statement {hx} into individual components `a`, `b`, `ha`, `hb`, and `hab`, to extract elements from the cosets `g • ↑N` and `h • ↑N` and establish their product relation.
       One can achieve this by using the `obtain` tactic.
       "
       obtain ⟨a, b, ha, hb,hab⟩ := hx
-      Hint "Use `obtain` to destructure the membership condition `ha : a ∈ g • ↑N` into an element `n1` of the subgroup `N` and an equation `g * n1 = a`."
+      Hint "Use `obtain` to destructure the membership condition {ha} : a ∈ g • ↑N into an element `n1` of the subgroup `N` and an equation `g * n1 = a`."
       obtain ⟨n1, hn1, ha : g*n1 = a ⟩ := ha
-      Hint "Apply the same technique to destructure the membership condition `hb : b ∈ h • ↑N` into an element `n2` of the subgroup `N` and an equation `h * n2 = b`."
+      Hint "Apply the same technique to destructure the membership condition {hb} : b ∈ h • ↑N` into an element `n2` of the subgroup `N` and an equation `h * n2 = b`."
       obtain ⟨n2, hn2, hb : h*n2 = b ⟩ := hb
       Hint "Note that (g*h) *(h⁻¹ * n1 * h * n2).  To clear the existential statement x ∈ (g * h) • N, we can use  Use `h⁻¹ * n1 * h * n2`."
       use (h⁻¹ * n1 * h * n2)
@@ -115,4 +116,4 @@ Statement : N.Normal ↔ ∀ g h : G,  (g • (N :Set G)) * (h • N) = (g * h) 
 open scoped Pointwise
 
 NewTheorem MonoidHom.mem_ker inv_inv Set.mem_mul_set_iff Subgroup.Normal.conj_mem Subgroup.one_mem Subgroup.mul_mem Set.mem_prod SetLike.mem_coe
-OnlyTactic intro «have» apply_fun rw apply exact assumption aesop
+NewTactic intro «have» apply_fun rw apply exact assumption aesop
