@@ -67,6 +67,9 @@ instance Monoid.instHMulSet : HMul (Set G) (Set G) (Set G)where
 @[simp]
 lemma mul_set_def (S T : Set G) : S * T = (fun x =>  x.1 * x.2) '' ( S ×ˢ T) := rfl
 
+/--
+Suppose S and T are two subset of G, then x in S * T ↔ ∃ (a b:G), (a ∈ S ∧ b ∈ T ∧  a*b=x).
+-/
 lemma mem_mul_set_iff {S T : Set G}: x ∈  S * T ↔ ∃ (a b:G), (a ∈ S ∧ b ∈ T ∧  a*b=x):= by
   constructor
   · simp_rw [mul_set_def,Set.mem_image, Set.mem_prod, Prod.exists, exists_and_left, forall_exists_index,
