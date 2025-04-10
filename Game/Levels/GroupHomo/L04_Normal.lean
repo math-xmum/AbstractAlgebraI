@@ -9,22 +9,12 @@ open scoped Pointwise
 Level 4
 
 Introduction "
-Let  f : G →* H be a group homomorphism.
-Then the kernel of f is defined by
+A subgroup N of G is called a normal subgroup if
+∀ g n, n ∈ N → g*n*g⁻¹ ∈ N.
 
-Ker(f) := {g ∈ G | f(g) = 1}
+We will show that N is normal if and only if the multiplication of any two left cosets is still a left coset.
 
-It is easy to see that Ker(f) is a subgroup of G.
-But Ker(f) satisfies one additional property:
-
-∀ g ∈ G, x ∈ Ker(f),  g x g⁻¹ ∈ f
-We now prove this property.
-
-A subgroup satisfies the above property is called a normal subgroup of G.
-
-Note that, if G is Abelian, then g x g⁻¹ = x ∈ Ker(f) for all x ∈ Ker(f), i.e. all subgroups of G are normal.
-But this is not the case for general groups.
-
+In this case, the equation (g • N) * (h • N) = (g*h) • N must holds since g*h is in (g • N) * (h • N).
 "
 variable {G H:Type*} [Group G] (N : Subgroup G)
 
