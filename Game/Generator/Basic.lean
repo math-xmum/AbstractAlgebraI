@@ -61,3 +61,24 @@ elab "GenerateHint " currentTactic:tactic : tactic => withMainContext do
   -- logInfo m!"{ref[0]}"
   TryThis.addSuggestion ref[0] (toSuggestion hint)
   -- toSuggestion hint
+
+
+
+
+elab "GenerateHint " currentTactic:tactic : tactic => withMainContext do
+  let goalBefore ← Tactic.getMainGoal
+  logInfo m!"{← ppGoal goalBefore}"
+  Tactic.evalTactic currentTactic
+  logInfo m!"{currentTactic}"
+  let goalAfter ← Tactic.getMainGoal
+  logInfo m!"{← ppGoal goalAfter}"
+  let prompt := mkPrompt (toString (← ppGoal goalBefore)) (toString currentTactic) (toString (← ppGoal goalAfter))
+  logInfo m!"{prompt}"
+  let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1, «stop» := []}
+  let results ← tacticGenerationOpenAI "" prompt (← getAPI) generationOption
+  let (hint, _) := results[0]!
+  let ref ← getRef
+  -- let hint := hint ++ (toString (currentTactic.raw))
+  -- logInfo m!"{ref[0]}"
+  TryThis.addSuggestion ref[0] (toSuggestion hint)
+  -- toSuggestion hint

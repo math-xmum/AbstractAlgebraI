@@ -16,6 +16,12 @@ A subgroup N of G is called a normal subgroup if
 We will show that N is normal if and only if the multiplication of any two left cosets is still a left coset.
 
 In this case, the equation (g • N) * (h • N) = (g*h) • N must holds since g*h is in (g • N) * (h • N).
+
+By this property,
+we see that
+the map G → Set G sending g to gN is a monoid homomorphism, whose image is the set G/N of left cosets of N.
+We call π : G → G/N canonical  group homomorphism.
+
 "
 variable {G H:Type*} [Group G] (N : Subgroup G)
 
