@@ -2,6 +2,7 @@ import Game.Metadata
 import Game.Levels.BasicLean
 import Game.Levels.BasicGroupTheory
 import Game.Levels.GroupHomo
+import Game.Levels.GroupAction
 
 -- Here's what we'll put on the title screen
 Title "Abstract Algebra Game"
