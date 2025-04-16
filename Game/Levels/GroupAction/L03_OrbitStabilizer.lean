@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "GroupAction"
 
-Level 2
+Level 3
 
 Introduction "
 Let X be a G-set.

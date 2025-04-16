@@ -1,6 +1,7 @@
 import Game.Metadata
-import Game.Levels.GroupAction.L01_Conj_Stabilizer
-import Game.Levels.GroupAction.L02_OrbitStabilizer
+import Game.Levels.GroupAction.L01_OrbitEq
+import Game.Levels.GroupAction.L02_ConjStabilizer
+import Game.Levels.GroupAction.L03_OrbitStabilizer
 
 
 World "GroupAction"

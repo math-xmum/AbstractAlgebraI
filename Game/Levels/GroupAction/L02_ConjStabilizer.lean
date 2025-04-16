@@ -4,7 +4,7 @@ import Game.Generator.Basic
 
 World "GroupAction"
 
-Level 1
+Level 2
 
 Introduction "
 Let X be a G-set.
