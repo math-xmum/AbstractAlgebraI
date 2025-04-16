@@ -8,7 +8,8 @@ open Lean Elab Meta Parser PrettyPrinter Tactic
 -- def getNextTactic (pos : String.pos) : Syntax :
 
 def mkPrompt (goalBefore currentTactic goalAfter : String) : List String :=
-  let p1 := "I am designing natural language hint for Lean 4 code, as a guidance for beginners to write one line of Lean tactic, I will give you state before tactic, state after tactic, and tactic used.
+  let p1 := "I am designing natural language hint for Lean 4 code, as a guidance for beginners to write one line of Lean tactic, I will give you state before tactic, state after tactic, and tactic used. Note that you are not allow to make your own judgement of the tactic.
+
 # Example Input
 ## State before the tactic
 x : ℝ
