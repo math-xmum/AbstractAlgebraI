@@ -22,4 +22,4 @@ Statement (e e' : G) (h1:∀ g :G,  e*g = g) (h2: ∀ g :G, g * e=g) (h3:∀ g :
   rw [h4 e]
 
 
-NewTactic rw rfl apply exact omega «have»  «let» «show» «calc» «repeat» obtain trivial pick_goal replace specialize aesop simp_all simp_rw
+NewTactic omega «have»  «let» «show» «calc» «repeat» trivial pick_goal replace specialize aesop simp_all simp_rw

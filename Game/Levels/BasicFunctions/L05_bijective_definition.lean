@@ -8,4 +8,4 @@ Statement {α β : Type} (f : α → β) : Function.Bijective f ↔ Function.Inj
   rfl
 
 Conclusion "Level Completed!"
-NewTactic use
+NewTactic use rfl

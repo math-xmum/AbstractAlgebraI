@@ -28,5 +28,4 @@ Statement (a b c: G)
   Hint "Use `one_mul`"
   rw [one_mul]
 
-NewTactic use rw rfl apply group constructor
 NewTheorem And.intro mul_one mul_assoc one_mul

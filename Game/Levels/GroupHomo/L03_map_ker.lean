@@ -45,4 +45,5 @@ Statement (f : G →* H) :
 open scoped Pointwise
 
 NewTheorem MonoidHom.mem_ker map_inv
-OnlyTactic intro «have» apply_fun rw apply exact assumption
+DisabledTactic group simp aesop trivial
+--OnlyTactic intro «have» apply_fun rw apply exact assumption

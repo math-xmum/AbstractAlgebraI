@@ -70,6 +70,6 @@ Statement {n : ℕ} {hn : n ≠ 0} {hn' : 0<n}:
       rw [add_comm]
 
 
-NewTactic use rw rfl apply group constructor intro ext simp simp_rw linarith exact
+NewTactic simp simp_rw linarith
 NewTheorem CommGroup_mk ext_lemma add_assoc add_comm Nat.mod_succ_eq_iff_lt Fin.is_lt Nat.mod_add_mod  Nat.add_mod_mod  Fin.mk.injEq Fin.is_le' Nat.sub_add_cancel Nat.mod_self Fin.zero_eta Nat.add_comm Nat.not_eq_zero_of_lt Nat.mod_eq_iff_lt
 NewDefinition add neg zero

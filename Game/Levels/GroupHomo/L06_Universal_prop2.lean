@@ -123,6 +123,5 @@ Statement [hN : N.Normal] {Q P:Type u} [Group Q] [Group P] (piP : G →* P) (piQ
 
 
 NewTheorem MonoidHom.coe_comp MonoidHom.id MonoidHom.comp Function.comp_assoc
-NewTactic «suffices» obtain
 
 section

@@ -25,5 +25,4 @@ Statement (a: G) : ∃ (b:G), (a*b =1 ∧ b*a = 1)  := by
     group
 
 
-NewTactic use rw rfl apply group constructor
 NewTheorem And.intro

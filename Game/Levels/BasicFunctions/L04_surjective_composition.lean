@@ -13,4 +13,4 @@ Statement {α β γ : Type} (f : α → β) (g : β → γ) (hf : Function.Surje
   rfl
 
 Conclusion "Level Completed!"
-NewTactic use
+NewTactic use rcases intro rw

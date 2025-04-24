@@ -113,4 +113,3 @@ Statement [hN : N.Normal] :
 
 
 NewTheorem ExistsUnique.intro QuotientGroup.mk'_eq_mk'
-NewTactic «suffices»

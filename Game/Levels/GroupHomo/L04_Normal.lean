@@ -122,4 +122,3 @@ Statement : N.Normal ↔ ∀ g h : G,  (g • (N :Set G)) * (h • N) = (g * h) 
 open scoped Pointwise
 
 NewTheorem MonoidHom.mem_ker inv_inv Set.mem_mul_set_iff Subgroup.Normal.conj_mem Subgroup.one_mem Subgroup.mul_mem Set.mem_prod SetLike.mem_coe
-NewTactic intro «have» apply_fun rw apply exact assumption aesop

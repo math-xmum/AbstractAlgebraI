@@ -31,4 +31,5 @@ open scoped Pointwise
 
 
 NewTheorem mul_left_cancel map_mul mul_one map_one mul_eq_one_iff_eq_inv mul_eq_one_iff_eq_inv
-OnlyTactic intro «have» apply_fun rw apply exact assumption
+--OnlyTactic intro «have» apply_fun rw apply exact assumption
+DisabledTactic group simp aesop trivial

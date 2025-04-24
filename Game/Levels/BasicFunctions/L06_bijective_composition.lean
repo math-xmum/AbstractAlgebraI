@@ -18,3 +18,4 @@ Statement {α β γ : Type} (f : α → β) (g : β → γ) (hf : Function.Bijec
     rfl
 
 Conclusion "Level Completed!"
+NewTactic intro apply exact use rw rfl

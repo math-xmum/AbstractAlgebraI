@@ -40,6 +40,5 @@ Conclusion "Level completed! Let's continue the journey."
 
 /- Use these commands to add items to the game's inventory. -/
 
-NewTactic intro
 NewTheorem one_mul mul_assoc mul_right_inv mul_one
 -- NewDefinition Nat Add Eq

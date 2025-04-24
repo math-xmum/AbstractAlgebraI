@@ -41,5 +41,4 @@ Statement  (H: ∀ a : G, a * a = 1) : ∀ a b :G, a*b=b*a := by
 
 #check mul_eq_one_iff_eq_inv
 
-NewTactic nth_rw
 NewTheorem mul_eq_one_iff_inv_eq mul_eq_one_iff_eq_inv add_eq_zero_iff_neg_eq  add_eq_zero_iff_eq_neg

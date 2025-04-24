@@ -15,4 +15,4 @@ Statement (a b c : G) : (a * b) * c = a * (b * c)  := by
   Hint "Use `group`"
   group
 
-NewTactic rw rfl apply group
+NewTactic  group

@@ -30,6 +30,5 @@ Let's continue the journey."
 
 /- Use these commands to add items to the game's inventory. -/
 
-NewTactic rw
 NewTheorem mul_assoc
 -- NewDefinition Nat Add Eq
