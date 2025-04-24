@@ -8,7 +8,7 @@ import Game.Levels.GroupHomo.L06_Universal_prop2
 
 
 World "GroupHomomorphism"
-Title "Basic about Homomorphism"
+Title "Group Homomorphism"
 
 Introduction "
 We now learn Homomorphism and normal subgroups.

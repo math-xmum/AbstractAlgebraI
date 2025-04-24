@@ -5,7 +5,7 @@ import Game.Levels.GroupAction.L03_OrbitStabilizer
 
 
 World "GroupAction"
-Title "Basic about Group Action"
+Title "Group Action"
 
 Introduction "
 We now learn Group Action.

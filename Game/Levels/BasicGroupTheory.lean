@@ -1,7 +1,7 @@
 import Game.Metadata
 import Game.Levels.BasicGroupTheory.L01_identity
-import Game.Levels.BasicGroupTheory.L02_assoc
-import Game.Levels.BasicGroupTheory.L03_inverse
+import Game.Levels.BasicGroupTheory.L02b_assoc
+import Game.Levels.BasicGroupTheory.L03b_inverse
 import Game.Levels.BasicGroupTheory.L04_inverse_unique
 import Game.Levels.BasicGroupTheory.L05_Subgroup_def
 import Game.Levels.BasicGroupTheory.L06_kZ
