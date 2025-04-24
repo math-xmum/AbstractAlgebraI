@@ -1,5 +1,6 @@
 import Game.Metadata
 import Game.Levels.BasicLean
+import Game.Levels.BasicFunctions
 import Game.Levels.BasicGroupTheory
 import Game.Levels.GroupHomo
 import Game.Levels.GroupAction

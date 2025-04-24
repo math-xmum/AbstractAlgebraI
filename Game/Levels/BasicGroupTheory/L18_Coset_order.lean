@@ -25,7 +25,6 @@ open scoped Pointwise
 variable {G : Type*} [Group G] {g :G} {H : Subgroup G}
 
 open Pointwise
-instance : HSMul G (Set G) (Set G):=inferInstance
 
 Statement  (g k : G) :
   (g • H :Set G) ∩ (k • H : Set G) = ∅ ∨  (g • H :Set G) = (k • H : Set G) := by
