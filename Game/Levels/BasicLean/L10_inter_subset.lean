@@ -1,7 +1,7 @@
 import Game.Metadata
 
-World "World_Two"
-Level 8
+World "BasicLean"
+Level 10
 Title "Exercise"
 
 Statement {α : Type*} (s t : Set α) : s ⊆ t → s ∩ t = s := by

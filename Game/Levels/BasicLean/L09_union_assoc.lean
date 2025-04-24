@@ -1,7 +1,7 @@
 import Game.Metadata
 
-World "World_Two"
-Level 7
+World "BasicLean"
+Level 9
 Title "Union is associative"
 
 Statement {α : Type*} (s t r : Set α): (s ∪ t) ∪ r = s ∪ (t ∪ r) := by

@@ -1,7 +1,7 @@
 import Game.Metadata
 
-World "World_Two"
-Level 1
+World "BasicLean"
+Level 3
 
 Title "Subset in Lean"
 

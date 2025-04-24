@@ -1,7 +1,7 @@
 import Game.Metadata
 
-World "World_Two"
-Level 4
+World "BasicLean"
+Level 6
 
 Title "Definition of intersection."
 

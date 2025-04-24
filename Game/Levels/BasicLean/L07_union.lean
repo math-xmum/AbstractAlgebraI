@@ -1,7 +1,7 @@
 import Game.Metadata
 
-World "World_Two"
-Level 5
+World "BasicLean"
+Level 7
 
 Title "Definition of union."
 

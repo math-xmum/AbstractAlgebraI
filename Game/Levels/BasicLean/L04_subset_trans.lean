@@ -1,7 +1,7 @@
 import Game.Metadata
 
-World "World_Two"
-Level 3
+World "BasicLean"
+Level 4
 
 Title "Containing relation is transitive."
 

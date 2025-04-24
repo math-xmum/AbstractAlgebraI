@@ -1,7 +1,7 @@
 import Game.Metadata
 
-World "World_Two"
-Level 6
+World "BasicLean"
+Level 8
 
 Title "Intersection is commutative."
 
