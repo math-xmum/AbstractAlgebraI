@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 3
+Level 5
 
 Introduction "
 A  monoid is a semi-group with identity and .

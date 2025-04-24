@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 7
+Level 9
 
 Introduction "
 Let Z_n be the set of integers modulo $n$.

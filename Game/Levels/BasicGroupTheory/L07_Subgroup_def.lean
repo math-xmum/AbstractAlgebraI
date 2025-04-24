@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 5
+Level 7
 
 Introduction "
 A subgroup of a group $G$ is a nonempty subset $H$ of $G$ such that $*$ is closed under $H$ and inverse.

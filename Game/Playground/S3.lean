@@ -9,7 +9,7 @@ open Function
 
 lemma elemsperm : (Finset.univ : Finset (Perm (Fin 3))) = {1, c[1, 2, 3], c[1, 2], c[1, 3, 2], c[2, 3], c[1, 3]} := by native_decide
 
-lemma elemsperm1 : (Finset.univ : Finset (Perm (Fin 3))) = eval% (Finset.univ : Finset (Perm (Fin 3))) := by rfl
+--lemma elemsperm1 : (Finset.univ : Finset (Perm (Fin 3))) = eval% (Finset.univ : Finset (Perm (Fin 3))) := by rfl
 
 #eval (Finset.univ : Finset (alternatingGroup (Fin 3)))
 
