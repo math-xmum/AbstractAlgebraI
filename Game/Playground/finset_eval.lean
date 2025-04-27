@@ -18,8 +18,11 @@ open Lean.Meta
 
 def  toExprAux {α : Type u} [ToLevel.{u}] [inst:ToExprM α]: List α  → MetaM Expr := fun x => do
   let type ← ToExprM.toTypeExprM α
+  let finsettype ← mkAppM ``Finset #[type]
+  logInfo m!"{← ppExpr type}"
   match x with
   | []    => pure <| mkAppN (.const ``Finset.empty [toLevel.{u}]) #[type]
+  | [a]   => mkAppOptM ``Singleton.singleton #[none,finsettype,none,(←inst.toExprM a)]
   | a::as => mkAppM ``Insert.insert #[(←inst.toExprM a),(←toExprAux as)]
 
 
@@ -51,10 +54,8 @@ unsafe def elabEvalExpr : Lean.Elab.Term.TermElab
   return (←ee)
 | _ => fun _ => Elab.throwUnsupportedSyntax
 
-
-#check List.cons
-#check Insert.insert
-#check Finset.empty
+#check @Singleton.singleton (ℕ) (Finset ℕ) _ 1
+#check ({1,2} : Finset ℕ)
 
 #check evalm% ({} : Finset ℕ )
 #check evalm% ({({2^10,1} : Finset ℕ),{2^3,2^5}}: Finset (Finset ℕ))
@@ -71,10 +72,8 @@ example (x : ℕ ): x∈ twopowers 10 → x=1 ∨ x %2 =0:= by
   intro hx
   have hh : twopowers 10 = evalm% twopowers 10 := by native_decide
   rw [hh] at hx
-  repeat rw [Finset.mem_insert] at hx
-  casesm* _ ∨ _
-  all_goals try simp [h]
-  exfalso
-  exact Finset.not_mem_empty _ h
+  fin_cases hx <;> simp
+
+
 
 #check a
