@@ -5,36 +5,44 @@ import Lean
 
 open Qq Lean Meta
 
+/--
+The class holds the function to convert a type to an expression in meta programming.
+-/
 class ToExprM (α : Type u) where
-  /-- The reflected version of `inst`. -/
   toExprM : α → MetaM Expr
   toTypeExprM : MetaM Expr
 
+/--
+Instance for any type that has a function toExpr, we can convert it to an expression.
+-/
 instance [h:ToExpr α] : ToExprM α where
   toExprM := fun x => pure (toExpr x)
   toTypeExprM := pure (h.toTypeExpr)
 
 open Lean.Meta
 
-def  toExprAux {α : Type u} [ToLevel.{u}] [inst:ToExprM α]: List α  → MetaM Expr := fun x => do
-  let type ← ToExprM.toTypeExprM α
-  let finsettype ← mkAppM ``Finset #[type]
-  logInfo m!"{← ppExpr type}"
-  match x with
-  | []    => pure <| mkAppN (.const ``Finset.empty [toLevel.{u}]) #[type]
-  | [a]   => mkAppOptM ``Singleton.singleton #[none,finsettype,none,(←inst.toExprM a)]
-  | a::as => mkAppM ``Insert.insert #[(←inst.toExprM a),(←toExprAux as)]
-
-
-
+/--
+The realization of ToExprM for Finset.
+-/
 unsafe instance Finset.toExprM
     {α : Type u} [ToLevel.{u}] [ToExprM α] [DecidableEq α] : ToExprM (Finset α) where
   toTypeExprM := do
     let type ← ToExprM.toTypeExprM α
     mkAppM ``Finset #[type]
-  toExprM := fun x => (toExprAux x.val.unquot)
+  toExprM :=
+  let rec toExprAux {α : Type u} [ToLevel.{u}] [inst:ToExprM α]: List α  → MetaM Expr := fun x => do
+    let type ← ToExprM.toTypeExprM α
+    let finsettype ← mkAppM ``Finset #[type]
+    logInfo m!"{← ppExpr type}"
+    match x with
+    | []    => pure <| mkAppN (.const ``Finset.empty [toLevel.{u}]) #[type]
+    | [a]   => mkAppOptM ``Singleton.singleton #[none,finsettype,none,(←inst.toExprM a)]
+    | a::as => mkAppM ``Insert.insert #[(←inst.toExprM a),(←toExprAux as)]
+  fun x => (toExprAux x.val.unquot)
 
-
+/--
+The upgraded version of eval% utilizing the ToExprM class.
+-/
 syntax (name := eval_exprm) "evalm% " term : term
 
 @[term_elab eval_exprm, inherit_doc eval_exprm]
@@ -54,6 +62,8 @@ unsafe def elabEvalExpr : Lean.Elab.Term.TermElab
   return (←ee)
 | _ => fun _ => Elab.throwUnsupportedSyntax
 
+/-
+section test
 #check @Singleton.singleton (ℕ) (Finset ℕ) _ 1
 #check ({1,2} : Finset ℕ)
 
@@ -75,5 +85,7 @@ example (x : ℕ ): x∈ twopowers 10 → x=1 ∨ x %2 =0:= by
   fin_cases hx <;> simp
 
 
-
 #check a
+
+end test
+-/

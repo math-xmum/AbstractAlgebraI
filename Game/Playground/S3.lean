@@ -6,7 +6,6 @@ open Function
 #eval permsOfFinset (Finset.univ : Finset (Fin 3))
 #eval (Finset.univ : Finset (Perm (Fin 3)))
 
-lemma elemsperm : (Finset.univ : Finset (Perm (Fin 3))) = eval% (Finset.univ : Finset (Perm (Fin 3))) := by native_decide
 lemma elemsperm : (Finset.univ : Finset (Perm (Fin 3))) = {1, c[1, 2, 3], c[1, 2], c[1, 3, 2], c[2, 3], c[1, 3]} := by native_decide
 
 
