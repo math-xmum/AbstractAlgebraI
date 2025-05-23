@@ -55,7 +55,7 @@ elab "GenerateHint " currentTactic:tactic : tactic => withMainContext do
   let prompt := mkPrompt (toString (← ppGoal goalBefore)) (toString currentTactic) (toString (← ppGoal goalAfter))
   logInfo m!"{prompt}"
   let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1,}
-  let results ← tacticGenerationOpenAI prompt (← getAPI) generationOption
+  let results ← hintGeneration prompt (← getAPI) generationOption
   let (hint, _) := results
   let ref ← getRef
   -- let hint := hint ++ (toString (currentTactic.raw))
@@ -219,18 +219,23 @@ Statement (R :Prop): ∀ (P Q : Prop), P ∧ Q → Q ∧  P  := by
   p1
 
 open LLMlean
+
 elab "#Genhint " c:command : command => do
   elabCommand c
   let statedump ← genhint c.raw
   let prompt := mkPrompt statedump
   logInfo m!"{prompt}"
   let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1}
-  let results ← tacticGenerationOpenAI [prompt] (← getAPI) generationOption
+  logInfo m!"{repr (← getAPI)}"
+  logInfo m!"{buildCmdArgs (← getAPI) generationOption prompt |>.args}"
+  let results ← hintGeneration [prompt] (← getAPI) generationOption
   --logInfo m!"{results}"
   let (hint, _) := results
   let ref ← getRef
   -- let hint := hint ++ (toString (currentTactic.raw))
   -- logInfo m!"{ref[0]}"
   Command.liftTermElabM $ Tactic.TryThis.addSuggestion ref[0] (hint)
+
+
 
 end HintsGenerator

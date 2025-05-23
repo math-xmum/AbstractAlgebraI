@@ -81,6 +81,7 @@ structure OpenAITacticGenerationRequest where
   stream : Bool := false
 deriving ToJson
 
+
 structure OpenAIChoice where
   message : OpenAIMessage
 deriving FromJson
@@ -89,6 +90,33 @@ structure OpenAIResponse where
   id : String
   choices : List OpenAIChoice
 deriving FromJson
+
+
+section Claude
+structure ClaudeGenerationRequest where
+  model : String
+  messages : List OpenAIMessage
+  temperature : Float := 0.7
+  max_tokens : Nat := 10000
+  stream : Bool := false
+deriving ToJson
+
+
+structure ClaudeMessage where
+  type: String
+  text: String
+deriving FromJson, ToJson
+
+
+
+structure ClaudeResponse where
+  id : String
+  type : String
+  content: List ClaudeMessage
+  stop_reason : String
+deriving FromJson, ToJson
+
+end Claude
 
 def getPromptKind (stringArg: String) : PromptKind :=
   match stringArg with
@@ -176,6 +204,55 @@ def getAPI : IO API := do
   | "claude" | "anthropic" => getClaudeAPI
   | _ => getOpenAIAPI
 
+def API.getResponse (api : API) := match api.kind with
+  | .Claude => ClaudeResponse
+  | _ => OpenAIResponse
+
+def buildCmdArgs (api : API)  (options : GenerationOptions) (prompt : String) : IO.Process.SpawnArgs :=
+  match api.kind with
+  | .Claude =>
+    let req : ClaudeGenerationRequest := {
+      model := api.model,
+      messages := [
+        {
+          role := "user",
+          content := prompt
+        }
+      ],
+      temperature := options.temperature
+    };
+    {
+    cmd := "curl"
+    args := #[
+      "-X", "POST", api.baseUrl,
+      "-H", "accept: application/json",
+      "-H", "Content-Type: application/json",
+      "-H", "anthropic-version: 2023-06-01",
+      "-H", "x-api-key: " ++ api.key,
+      "-d", (toJson req).pretty UInt64.size]
+    }
+  | _ =>
+    let req : OpenAITacticGenerationRequest := {
+      model := api.model,
+      messages := [
+        {
+          role := "user",
+          content := prompt
+        }
+      ],
+      n := 1,
+      temperature := options.temperature
+      };
+    {
+    cmd := "curl"
+    args := #[
+      "-X", "POST", api.baseUrl,
+      "-H", "accept: application/json",
+      "-H", "Content-Type: application/json",
+      "-H", "Authorization: Bearer " ++ api.key,
+      "-d", (toJson req).pretty UInt64.size]
+    }
+
 def post {α β : Type} [ToJson α] [FromJson β] (req : α) (url : String) (apiKey : String): IO β := do
   let out ← IO.Process.output {
     cmd := "curl"
@@ -196,31 +273,57 @@ def post {α β : Type} [ToJson α] [FromJson β] (req : α) (url : String) (api
   return res
 
 
+def postPrompt {β : Type}  [FromJson β] (prompt : String)
+(api :API) (options : GenerationOptions) : IO β := do
+  let out ← IO.Process.output $ buildCmdArgs api options prompt
+  if out.exitCode != 0 then
+     throw $ IO.userError s!"Request failed. If running locally, ensure that ollama is running, and that the ollama server is up at `{api.baseUrl}`. If the ollama server is up at a different url, set LLMLEAN_URL to the proper url. If using a cloud API, ensure that LLMLEAN_API_KEY is set."
+  let some json := Json.parse out.stdout |>.toOption
+    | throw $ IO.userError out.stdout
+  let some res := (fromJson? json : Except String β) |>.toOption
+    | throw $ IO.userError out.stdout
+  return res
 
 
-def parseResponse (res: OpenAIResponse) : Array String :=
+def parseOpenAIResponse (res: OpenAIResponse) : Array String :=
   (res.choices.map fun x => x.message.content).toArray
 
+/-
 def tacticGenerationOpenAI
 (prompts : List String)
 (api : API) (options : GenerationOptions) : IO $ (String × Float) := do
   --let mut results : HashSet String := HashSet.empty
   let mut resstr : String := ""
   for prompt in prompts do
-    let req : OpenAITacticGenerationRequest := {
-      model := api.model,
-      messages := [
-        {
-          role := "user",
-          content := prompt
-        }
-      ],
-      n := 1,
-      temperature := options.temperature
-    }
-    let res : OpenAIResponse ← post req api.baseUrl api.key
-    for result in (parseResponse res ) do
+    let res := ← postPrompt prompt api options
+    for result in (parseOpenAIResponse res ) do
       resstr := resstr ++ result
+
+  let finalResults := (resstr,1.0)
+  return finalResults
+-/
+
+
+
+def parseClaudeResponse (res: ClaudeResponse) : Array String :=
+  (res.content.map fun x => x.text).toArray
+
+
+def hintGeneration
+(prompts : List String)
+(api : API) (options : GenerationOptions) : IO $ (String × Float) := do
+  --let mut results : HashSet String := HashSet.empty
+  let mut resstr : String := ""
+  for prompt in prompts do
+    match api.kind with
+    |.Claude =>
+      let res : ClaudeResponse ← postPrompt prompt api options
+      for result in (parseClaudeResponse res) do
+        resstr := resstr ++ result
+    | _ =>
+      let res : OpenAIResponse ← postPrompt prompt api options
+      for result in (parseOpenAIResponse res) do
+        resstr := resstr ++ result
 
   let finalResults := (resstr,1.0)
   --(results.toArray.filter filterGeneration).map fun x => (x, 1.0)

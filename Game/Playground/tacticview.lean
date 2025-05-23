@@ -87,7 +87,6 @@ def genhint (stx : Syntax) : CommandElabM <| String := do
   logInfo currNamespace
   --logInfo m!"{opl}"
   --logInfo m!"{tacSeq}"
-  --let mut newProofs : Array AugmentInfo := #[]
   let padding := " "
   for tree in trees do
     for tac in tacSeq do
@@ -191,7 +190,9 @@ elab "#Genhint " c:command : command => do
   let prompt := mkPrompt statedump
   logInfo m!"{prompt}"
   let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1}
-  let results ← tacticGenerationOpenAI [prompt] (← getAPI) generationOption
+  logInfo m!"{repr (← getAPI)}"
+  logInfo m!"{buildCmdArgs (← getAPI) generationOption prompt |>.args}"
+  let results ← hintGeneration [prompt] (← getAPI) generationOption
   --logInfo m!"{results}"
   let (hint, _) := results
   let ref ← getRef
@@ -203,12 +204,13 @@ end HintsGenerator
 
 World "abc"
 Level 1
-#Genhint
+#Genhintx
 Statement subset_trans' {α : Type*} (r s t : Set α): r ⊆ s → s ⊆ t → r ⊆ t := by
   intro h₁ h₂ x hx
   apply h₂
   apply h₁
   exact hx
+
 
 
 
