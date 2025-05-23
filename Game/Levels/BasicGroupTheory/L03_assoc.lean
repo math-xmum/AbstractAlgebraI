@@ -11,6 +11,7 @@ A semi-group is a set $G$ with a binary operation $*$ such that $*$ has associat
 
 variable (G :Type*) [Semigroup G]
 
+
 Statement (a b c : G) : (a * b) * c = a * (b * c)  := by
   Hint "Use `group`"
   group

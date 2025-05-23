@@ -2,7 +2,7 @@ import Mathlib
 import Qq
 import Lean
 import Lean.Meta.Tactic.TryThis
-import Game.Metadata
+import GameServer.Commands
 import Game.Generator.API
 
 open Lean.Syntax
@@ -190,7 +190,7 @@ elab "#Genhint " c:command : command => do
   let statedump ← genhint c.raw
   let prompt := mkPrompt statedump
   logInfo m!"{prompt}"
-  let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1, «stop» := []}
+  let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1}
   let results ← tacticGenerationOpenAI [prompt] (← getAPI) generationOption
   --logInfo m!"{results}"
   let (hint, _) := results
@@ -201,7 +201,6 @@ elab "#Genhint " c:command : command => do
 
 end HintsGenerator
 
-/-
 World "abc"
 Level 1
 #Genhint
@@ -210,7 +209,6 @@ Statement subset_trans' {α : Type*} (r s t : Set α): r ⊆ s → s ⊆ t → r
   apply h₂
   apply h₁
   exact hx
--/
 
 
 

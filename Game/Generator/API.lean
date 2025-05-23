@@ -32,21 +32,18 @@ deriving Inhabited, Repr
 
 structure GenerationOptionsOllama where
   temperature : Float := 0.7
-  «stop» : List String := ["[/TAC]"]
   /-- Maximum number of tokens to generate. `-1` means no limit. -/
-  num_predict : Int := 100
+  num_predict : Int := 5000
 deriving ToJson
 
 structure GenerationOptions where
   temperature : Float := 0.7
   numSamples : Nat := 1
-  «stop» : List String := ["\n", "[/TAC]"]
 deriving ToJson
 
 structure GenerationOptionsQed where
   temperature : Float := 0.7
   numSamples : Nat := 1
-  «stop» : List String := ["\n\n"]
 deriving ToJson
 
 structure OllamaTacticGenerationRequest where
@@ -74,24 +71,14 @@ structure OpenAIMessage where
   content : String
 deriving FromJson, ToJson
 
-structure OpenAIQedRequest where
-  model : String
-  messages : List OpenAIMessage
-  n : Nat := 5
-  temperature : Float := 0.7
-  max_tokens : Nat := 512
-  stream : Bool := false
-  «stop» : List String := ["\n\n", "[/PROOF]"]
-deriving ToJson
 
 structure OpenAITacticGenerationRequest where
   model : String
   messages : List OpenAIMessage
   n : Nat := 5
   temperature : Float := 0.7
-  max_tokens : Nat := 1000
+  max_tokens : Nat := 8192
   stream : Bool := false
-  «stop» : List String := ["[/TAC]"]
 deriving ToJson
 
 structure OpenAIChoice where
@@ -194,6 +181,7 @@ def post {α β : Type} [ToJson α] [FromJson β] (req : α) (url : String) (api
     cmd := "curl"
     args := #[
       "-X", "POST", url,
+      "-H", "x-api-key: " ++ apiKey,
       "-H", "accept: application/json",
       "-H", "Content-Type: application/json",
       "-H", "Authorization: Bearer " ++ apiKey,
@@ -213,7 +201,7 @@ def post {α β : Type} [ToJson α] [FromJson β] (req : α) (url : String) (api
 def parseResponse (res: OpenAIResponse) : Array String :=
   (res.choices.map fun x => x.message.content).toArray
 
-def tacticGenerationOpenAI --(pfx : String)
+def tacticGenerationOpenAI
 (prompts : List String)
 (api : API) (options : GenerationOptions) : IO $ (String × Float) := do
   --let mut results : HashSet String := HashSet.empty
@@ -227,7 +215,7 @@ def tacticGenerationOpenAI --(pfx : String)
           content := prompt
         }
       ],
-      n := options.numSamples,
+      n := 1,
       temperature := options.temperature
     }
     let res : OpenAIResponse ← post req api.baseUrl api.key

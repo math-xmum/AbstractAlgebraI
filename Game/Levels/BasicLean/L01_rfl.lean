@@ -7,7 +7,6 @@ Title "Rfl tactic"
 
 Introduction "This level gets you familiar with the game interface."
 
-
 Statement : 2 + 2 = 4 := by
   Hint "The equality can be settaled by evaluation."
   Hint "You can use either `rfl` or `norm_num`."

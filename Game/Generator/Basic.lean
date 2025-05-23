@@ -54,7 +54,7 @@ elab "GenerateHint " currentTactic:tactic : tactic => withMainContext do
   logInfo m!"{← ppGoal goalAfter}"
   let prompt := mkPrompt (toString (← ppGoal goalBefore)) (toString currentTactic) (toString (← ppGoal goalAfter))
   logInfo m!"{prompt}"
-  let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1, «stop» := []}
+  let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1,}
   let results ← tacticGenerationOpenAI prompt (← getAPI) generationOption
   let (hint, _) := results
   let ref ← getRef
@@ -151,7 +151,9 @@ def mkPrompt (statedump:String) : String :=
   # Output convention
   1. You are not allow to make your own judgement of the tactic.
   2. Use $ $ to embrace the inline math mode.
-  3. The variables/hypothesis name occurred
+  3. Use unicode for math symbol when possible
+  4. Use \\\\ for latex marcos
+  4. The variables/hypothesis name occurred
     before `⊢` should be embraced by curly brackets { }.
     For example, given
     ===Goal Before===
@@ -222,7 +224,7 @@ elab "#Genhint " c:command : command => do
   let statedump ← genhint c.raw
   let prompt := mkPrompt statedump
   logInfo m!"{prompt}"
-  let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1, «stop» := []}
+  let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1}
   let results ← tacticGenerationOpenAI [prompt] (← getAPI) generationOption
   --logInfo m!"{results}"
   let (hint, _) := results
