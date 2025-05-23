@@ -5,7 +5,6 @@ import Lean.Meta.Tactic.TryThis
 import Game.Metadata
 import Game.Generator.API
 
-
 open Lean.Syntax
 open Lean Elab Syntax Command Expr
 open Qq
@@ -35,21 +34,6 @@ lemma aa: ∀ (P Q : Prop), P ∧ Q → P := by
 
 namespace Lean.Syntax
 
-def setArgr (stx: Syntax) (locs: List Nat) (arg: Syntax) : Syntax :=
-  match locs with
-  | .nil => arg
-  | .cons i it => stx.setArg i $ stx[i].setArgr it arg
-
-def setArgsr (stx: Syntax) (locs: List Nat) (args: Array Syntax) : Syntax :=
-  match locs with
-  | .nil => stx.setArgs args
-  | .cons i it => stx.setArg i $ stx[i].setArgsr it args
-
-partial def findall (stx: Syntax) (p: Syntax → Bool) : List Syntax :=
-  match stx with
-  | stx@(Syntax.node _ _ args) =>
-    (if p stx then [stx] else []) ++ args.toList.bind (findall · p)
-  | _ => if p stx then [stx] else []
 
 def getProof (stx : Syntax) : Syntax :=
   match stx[1][0].getKind with
@@ -58,64 +42,11 @@ def getProof (stx : Syntax) : Syntax :=
   | `def => stx[1][3]
   | _ => Syntax.missing
 
-def setProof (stx : Syntax) (newProof : Syntax) : Syntax :=
-  match stx[1][0].getKind with
-  | `lemma => stx.setArgr [1,3] newProof
-  | `theorem     => stx.setArgr [1,3] newProof
-  | `def  => stx.setArgr [1,3] newProof
-  | _ => stx
-
 def getTacticSeq (stx : Syntax) : Array Syntax :=
   match stx.getKind with
   | `command__Statement____ => stx[6][1][1][0][0].getArgs
   | _ => stx.getProof[1][1][0][0].getArgs
 
-/-- Get the tactic sequence of a proof, excluding the tactic separator.
-This is useful for manipulating the tactic sequence. -/
-def getTacticSeq' (stx : Syntax) : Array Syntax :=
-  let tacSep := stx.getProof[1][1][0][0][1]!
-  stx.getProof[1][1][0][0].getArgs.filter (¬ · == tacSep)
-
-def setTacticSeq (stx : Syntax) (tacSeq : Array Syntax) : Syntax :=
-  stx.getProof.setArgsr [1,1,0,0] tacSeq
-
-def getProofAfter (stx : Syntax) (pos: String.Pos) : Syntax := Id.run do
-  -- let tactic_seq := stx[1][1][3][1][1][0][0].getArgs
-  let tactic_seq := stx.getTacticSeq
-  let tac_sep := tactic_seq[1]!
-  let mut after_seq : Array Syntax := #[]
-  for tac in tactic_seq do
-    let tac_pos := tac.getPos?.getD 0
-    if tac_pos >= pos then
-      after_seq := (after_seq.push tac).push tac_sep
-  stx.setTacticSeq after_seq
-
-def getProofWithin (stx : Syntax) (pos : String.Pos) (endPos : String.Pos) : Syntax := Id.run do
-  let tactic_seq := stx.getTacticSeq
-  let tac_sep := tactic_seq[1]!
-  let mut within_seq : Array Syntax := #[]
-  for tac in tactic_seq do
-    let tac_pos := tac.getPos?.getD 0
-    if tac_pos >= pos ∧ tac_pos <= endPos then
-      within_seq := (within_seq.push tac).push tac_sep
-  stx.setTacticSeq within_seq
-
-/-- Push a tactic at the end of a proof -/
-def pushTactic (stx : Syntax) (tac : Syntax) : Syntax := Id.run do
-  let tactic_seq := stx[1][1][0][0].getArgs
-  let tac_sep := tactic_seq[1]!
-  let new_seq := (tactic_seq.push tac).push tac_sep
-  stx.setArgsr [1,1,0,0] new_seq
-
-def getNearestNoGoalsPos (stx : Syntax) (pos : String.Pos) : String.Pos := Id.run do
-  let tactic_seq := stx[1][3][1][1][0][0].getArgs
-  let mut nearest_pos := 0
-  for tac in tactic_seq do
-    let tac_pos := tac.getPos?.getD 0
-    if tac_pos > pos then
-      break
-    nearest_pos := tac_pos
-  nearest_pos
 
 def getDec (stx : Syntax) : Syntax :=
   match stx.getKind with
@@ -133,7 +64,6 @@ def dumpDecl (stx : Syntax) : String:=
     | _ => ""
 
 
-
 def toStr (stx : Syntax) : String :=
   match stx.reprint with
   | some a => a
@@ -141,12 +71,12 @@ def toStr (stx : Syntax) : String :=
 
 end Lean.Syntax
 
-namespace Analyzer.Process.Cn2Aug
+section HintsGenerator
 
 open Lean.Meta
 
 
-def cn2Aug (stx : Syntax) : CommandElabM <| String := do
+def genhint (stx : Syntax) : CommandElabM <| String := do
   let tacSeq := stx.getTacticSeq.toList
   let mut statedump: String := ""
   statedump := statedump ++ s!"{stx.dumpDecl} := by \n"
@@ -183,7 +113,20 @@ def cn2Aug (stx : Syntax) : CommandElabM <| String := do
 
 
 def mkPrompt (statedump:String) : String :=
-  let p1 := "I am designing natural language hint for Lean 4 code, as a guidance for beginners to write of Lean tactic and learn mathematics, I will give you the whole proof, after each tactic the comments includes the state before and after applying the tactic. Your task is to out put the annotated proof. Note that you are not allow to make your own judgement of the tactic.
+  let p1 := "I am designing natural language hint for Lean 4 code, as a guidance for beginners to write of Lean tactic and learn mathematics, I will give you the whole proof, after each tactic the comments includes the state before and after applying the tactic. Your task is to out put the annotated proof.
+
+  # Output convention
+  1. You are not allow to make your own judgement of the tactic.
+  2. Use $ $ to embrace the inline math mode.
+  3. The variables/hypothesis name occurred
+    before `⊢` should be embraced by curly brackets { }.
+    For example, given
+    ===Goal Before===
+    R : Prop ⊢ ∀ (P Q : Prop), P ∧ Q → Q ∧ P
+
+    The variable R should be embraced by {R}.
+    But variable P and Q should not be embraced.
+
 
 # Example Input
 Statement and_comm  (R :Prop): ∀ (P Q : Prop), P ∧ Q → Q ∧  P  := by
@@ -223,11 +166,12 @@ case right R P Q : Prop h : P ∧ Q ⊢ P-/
 
 # Example Output
 Introduction \"The following statement claims
-If P AND Q is true, then Q AND P is true.
-This is actually a statement about the commutativity of conjunction (AND), showing that the order of propositions in a conjunction can be swapped.
+If $P$ AND $Q$ is true, then $Q$ AND $P$ is true.
+This is actually a statement about the commutativity of conjunction AND, showing that the order of propositions in a conjunction can be swapped.
  \"
 Statement (R :Prop): ∀ (P Q : Prop), P ∧ Q → Q ∧  P  := by
-  Hint \"We start by introducing the variables P, Q and the hypothesis h that P ∧ Q is true. You can use `intro`. \"
+  Hint \" {R} is a proposition we never use.
+  We start by introducing the variables P, Q and the hypothesis h that P ∧ Q is true. You can use `intro`. \"
   intro P Q h
   Hint \"To prove Q ∧ P, we need to prove both Q and P separately. You can use `constructor` \"
   constructor
@@ -240,53 +184,41 @@ Statement (R :Prop): ∀ (P Q : Prop), P ∧ Q → Q ∧  P  := by
   p1
 
 open LLMlean
-elab "#cn2Aug " c:command : command => do
+
+elab "#Genhint " c:command : command => do
   elabCommand c
-  let statedump ← cn2Aug c.raw
+  let statedump ← genhint c.raw
   let prompt := mkPrompt statedump
-  --logInfo m!"{prompt}"
+  logInfo m!"{prompt}"
   let generationOption : GenerationOptions := {temperature := 0.7, numSamples := 1, «stop» := []}
-  let results ← tacticGenerationOpenAI "" [prompt] (← getAPI) generationOption
-  logInfo m!"{results}"
-  let (hint, _) := results[0]!
+  let results ← tacticGenerationOpenAI [prompt] (← getAPI) generationOption
+  --logInfo m!"{results}"
+  let (hint, _) := results
   let ref ← getRef
   -- let hint := hint ++ (toString (currentTactic.raw))
   -- logInfo m!"{ref[0]}"
   Command.liftTermElabM $ Tactic.TryThis.addSuggestion ref[0] (hint)
 
-end Analyzer.Process.Cn2Aug
+end HintsGenerator
 
+/-
 World "abc"
 Level 1
-
-#cn2Aug
+#Genhint
 Statement subset_trans' {α : Type*} (r s t : Set α): r ⊆ s → s ⊆ t → r ⊆ t := by
   intro h₁ h₂ x hx
   apply h₂
   apply h₁
   exact hx
-
-
-#cn2Aug
-theorem and_comm'' (R :Prop): ∀ (P Q : Prop), P ∧ Q → Q ∧ P:= by
-   intro P Q h
-   constructor
-   · exact h.2
-   ·
-    exact h.1
-
-#cn2Aug
-lemma and_comm''' (R :Prop): ∀ (P Q : Prop), P ∧ Q → Q ∧ P:= by
-   intro P Q h
-   constructor
-   · exact h.2
-   ·
-    exact h.1
+-/
 
 
 
+/-
+World "BasicLean"
 Introduction "The following statement claims that subset relation is transitive:
 If r is a subset of s, and s is a subset of t, then r is a subset of t."
+Level 1
 
 Statement subset_trans''' {α : Type*} (r s t : Set α): r ⊆ s → s ⊆ t → r ⊆ t := by
   Hint "We start by introducing our hypotheses: h₁ (r ⊆ s), h₂ (s ⊆ t),
@@ -301,3 +233,4 @@ Statement subset_trans''' {α : Type*} (r s t : Set α): r ⊆ s → s ⊆ t →
 
   Hint "Finally, we use our hypothesis hx which states that x ∈ r"
   exact hx
+-/

@@ -5,6 +5,7 @@ Level 3
 
 Title "Subset in Lean"
 
+#Genhint
 Statement {α : Type*} (s t : Set α): s ⊆ t ↔ ∀ x, x ∈ s → x ∈ t := by
   rfl
 

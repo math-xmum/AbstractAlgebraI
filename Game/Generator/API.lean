@@ -9,6 +9,8 @@ inductive APIKind : Type
   | Ollama
   | TogetherAI
   | OpenAI
+  | Claude
+  | DeepSeek
   deriving Inhabited, Repr
 
 
@@ -37,13 +39,13 @@ deriving ToJson
 
 structure GenerationOptions where
   temperature : Float := 0.7
-  numSamples : Nat := 10
+  numSamples : Nat := 1
   «stop» : List String := ["\n", "[/TAC]"]
 deriving ToJson
 
 structure GenerationOptionsQed where
   temperature : Float := 0.7
-  numSamples : Nat := 10
+  numSamples : Nat := 1
   «stop» : List String := ["\n\n"]
 deriving ToJson
 
@@ -87,7 +89,7 @@ structure OpenAITacticGenerationRequest where
   messages : List OpenAIMessage
   n : Nat := 5
   temperature : Float := 0.7
-  max_tokens : Nat := 100
+  max_tokens : Nat := 1000
   stream : Bool := false
   «stop» : List String := ["[/TAC]"]
 deriving ToJson
@@ -150,11 +152,41 @@ def getOpenAIAPI : IO API := do
   }
   return api
 
+def getDeepSeekAPI : IO API := do
+  let url        := (← IO.getEnv "LLMLEAN_ENDPOINT").getD "https://api.deepseek.com/v1/chat/completions"
+  let model      := (← IO.getEnv "LLMLEAN_MODEL").getD "deepseek-chat"
+  let promptKind := (← IO.getEnv "LLMLEAN_PROMPT").getD "detailed"
+  let apiKey     := (← IO.getEnv "LLMLEAN_API_KEY").getD ""
+  let api : API := {
+    model := model,
+    baseUrl := url,
+    kind := APIKind.DeepSeek,
+    promptKind := getPromptKind promptKind,
+    key := apiKey
+  }
+  return api
+
+def getClaudeAPI : IO API := do
+  let url        := (← IO.getEnv "LLMLEAN_ENDPOINT").getD "https://api.anthropic.com/v1/messages"
+  let model      := (← IO.getEnv "LLMLEAN_MODEL").getD "claude-3-5-sonnet-20241022"
+  let promptKind := (← IO.getEnv "LLMLEAN_PROMPT").getD "detailed"
+  let apiKey     := (← IO.getEnv "LLMLEAN_API_KEY").getD ""
+  let api : API := {
+    model := model,
+    baseUrl := url,
+    kind := APIKind.Claude,
+    promptKind := getPromptKind promptKind,
+    key := apiKey
+  }
+  return api
+
 def getAPI : IO API := do
   let apiKind  := (← IO.getEnv "LLMLEAN_API").getD "openai"
   match apiKind with
   | "ollama" => getOllamaAPI
   | "together" => getTogetherAPI
+  | "deepseek" => getDeepSeekAPI
+  | "claude" | "anthropic" => getClaudeAPI
   | _ => getOpenAIAPI
 
 def post {α β : Type} [ToJson α] [FromJson β] (req : α) (url : String) (apiKey : String): IO β := do
@@ -176,22 +208,16 @@ def post {α β : Type} [ToJson α] [FromJson β] (req : α) (url : String) (api
   return res
 
 
-def splitTac (text : String) : String :=
-  let text := text.replace "[TAC]" ""
-  match (text.splitOn "[/TAC]").head? with
-  | some s => s.trim
-  | none => text.trim
 
-def filterGeneration (s: String) : Bool :=
-  let banned := ["sorry", "admit", "▅"]
-  !(banned.any fun s' => (s.splitOn s').length > 1)
 
-def parseTacticResponseOpenAI (res: OpenAIResponse) (pfx : String) : Array String :=
-  (res.choices.map fun x => pfx ++ (splitTac x.message.content)).toArray
+def parseResponse (res: OpenAIResponse) : Array String :=
+  (res.choices.map fun x => x.message.content).toArray
 
-def tacticGenerationOpenAI (pfx : String) (prompts : List String)
-(api : API) (options : GenerationOptions) : IO $ Array (String × Float) := do
-  let mut results : HashSet String := HashSet.empty
+def tacticGenerationOpenAI --(pfx : String)
+(prompts : List String)
+(api : API) (options : GenerationOptions) : IO $ (String × Float) := do
+  --let mut results : HashSet String := HashSet.empty
+  let mut resstr : String := ""
   for prompt in prompts do
     let req : OpenAITacticGenerationRequest := {
       model := api.model,
@@ -205,8 +231,9 @@ def tacticGenerationOpenAI (pfx : String) (prompts : List String)
       temperature := options.temperature
     }
     let res : OpenAIResponse ← post req api.baseUrl api.key
-    for result in (parseTacticResponseOpenAI res pfx) do
-      results := results.insert result
+    for result in (parseResponse res ) do
+      resstr := resstr ++ result
 
-  let finalResults := (results.toArray.filter filterGeneration).map fun x => (x, 1.0)
+  let finalResults := (resstr,1.0)
+  --(results.toArray.filter filterGeneration).map fun x => (x, 1.0)
   return finalResults

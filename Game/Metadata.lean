@@ -4,6 +4,8 @@ import Game.Levels.Lemmas.GroupTheory
 
 import Mathlib.Tactic.Common
 
+import Game.Generator.Basic
+
 /-! Use this file to add things that should be available in all levels.
 
 For example, this demo imports the mathlib tactics
@@ -18,4 +20,4 @@ that imports all its levels.
 -/
 
 
-lemma have_intro {Q : Prop} (P : Prop) (p : P) : (P→Q) → Q  := fun h => h p
+--lemma have_intro {Q : Prop} (P : Prop) (p : P) : (P→Q) → Q  := fun h => h p
