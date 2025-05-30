@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "BasicGroupTheory"
-Level 4
+Level 3
 
 Title "Inverse Uniqueness"
 

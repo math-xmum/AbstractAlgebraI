@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 8
+Level 7
 
 Introduction "
 For example, ℤ is a group under addition.

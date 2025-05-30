@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 3
+Level 2
 
 Introduction "
 A semi-group is a set $G$ with a binary operation $*$ such that $*$ has associative law.

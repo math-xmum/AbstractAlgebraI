@@ -4,7 +4,7 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 1
+Level 2
 
 open Set
 
@@ -16,7 +16,7 @@ open Set
 
 Introduction "The following statement claims that the set of odd integers is not closed under addition, meaning it does not form an additive magma."
 
-Statement : ¬ isAddMagma {x : ℤ | Odd x} := by
+Statement : ¬ Set.isAddMagma {x : ℤ | Odd x} := by
   Hint "We start by unfolding the definition of `isAddMagma` to see what we need to disprove."
   unfold isAddMagma
 
@@ -29,4 +29,6 @@ Statement : ¬ isAddMagma {x : ℤ | Odd x} := by
   Hint "We need to prove that $1$ is odd, $1$ is odd, and $1 + 1 = 2$ is not odd. The `decide` tactic can automatically prove this kind of simple arithmetic fact."
   decide
 
+NewDefinition Set.isAdMagma
+OnlyDefinition Set.isAdMagma
 OnlyTactic unfold use rw decide push_neg

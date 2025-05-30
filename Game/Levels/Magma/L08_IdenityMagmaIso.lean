@@ -4,7 +4,7 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 1
+Level 8
 
 
 variable (α β:Type*) [Mul α] [Mul β]
@@ -17,9 +17,9 @@ Statement (e : α) (he: Mul.isIdentity e) (φ : α ≃* β): Mul.isIdentity (φ 
   unfold Mul.isIdentity at he
   Hint "We need to prove that for any element $x'$ in $β$, both $x' * φ (e) = x'$ and $φ(e) * x' = x'$. Let's introduce $x'$."
   intro x'
-  Hint "To use our hypothesis {he}, we need to relate $x'$ in $β$ to some element in $α$. Note that φ is an isomorphism, the inverse of φ is called `{φ}.symm` in Mathlib. Let's define $y$ as the image of $x'$ under {φ}.symm."
+  Hint "To use our hypothesis {he}, we need to relate $x'$ in $β$ to some element in $α$. Note that φ is an isomorphism, the inverse of φ is called `{φ}.symm` in Mathlib. Let's define $y$ as the image of $x'$ under {φ}.symm. Use `let y := φ.symm x'`"
   let y := φ.symm x'
-  Hint "Now we need to establish the relationship between $x'$ and $φ(y)$. By definition of the inverse of an equivalence, we have $x' = φ(y)$. One can use `have hx' : x' = φ (y) := MulEquiv.apply_symm_apply φ`"
+  Hint "Now we need to establish the relationship between $x'$ and $φ(y)$. By definition of the inverse of an equivalence, we have $x' = φ(y)$. One can use `have hx' : φ (y) = x' := MulEquiv.apply_symm_apply _ _`"
   have hx' : φ (y) = x' := MulEquiv.apply_symm_apply _ _
   Hint "Let's substitute $x'$ with $φ(y)$ in our goal."
   rw [<-hx']
@@ -38,4 +38,5 @@ Statement (e : α) (he: Mul.isIdentity e) (φ : α ≃* β): Mul.isIdentity (φ 
 
 
 OnlyTactic unfold rw sepcialize «let»
+NewTheorem Mul.isIdentity MulEquiv.apply_symm_apply MulEquiv.map_mul
 OnlyTheorem Mul.isIdentity MulEquiv.apply_symm_apply MulEquiv.map_mul

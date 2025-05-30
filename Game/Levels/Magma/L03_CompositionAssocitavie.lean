@@ -24,4 +24,5 @@ Statement {α : Type*} (f g h : α → α): (f ∘ g) ∘ h = f ∘ (g ∘ h) :=
 
 
 OnlyTactic ext rw
+NewTheorem Function.comp_apply
 OnlyTheorem Function.comp_apply

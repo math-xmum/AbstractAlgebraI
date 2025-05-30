@@ -2,7 +2,7 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 18
+Level 17
 
 Introduction "
 Let H be a subgroup of G.

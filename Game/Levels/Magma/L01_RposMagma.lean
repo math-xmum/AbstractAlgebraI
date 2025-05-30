@@ -27,5 +27,8 @@ Statement : Set.isMagma {x : ℝ | x > 0} := by
   Hint "For the second subgoal, we need to show that y > 0. This follows directly from our hypothesis {hy}."
   exact hy
 
+
 OnlyTactic unfold use rw decide push_neg
 NewTheorem Set.mem_setOf_eq mul_pos
+OnlyTheorem Set.mem_setOf_eq mul_pos
+NewDefinition Set.isMagma Set.isAddMagma

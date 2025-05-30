@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 11
+Level 10
 
 Introduction "
 If G is a group such that a * a = 1 for all a in G, then G is abelian.

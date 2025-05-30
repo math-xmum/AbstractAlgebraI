@@ -4,7 +4,7 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 1
+Level 7
 
 Introduction "
 Suppose $G$ is a set with a binary operation $*$.
@@ -45,5 +45,5 @@ Statement (e e' : α) (he: Mul.isIdentity e) (he': Mul.isIdentity e') : e = e' :
 Conclusion "Note: The proof doesn't actually use the second claim of `he` or the first claim of `he'`, but they're part of the symmetric definition of identity elements.
 "
 
-NewDefinition Mul.isIdentity
+NewDefinition Mul.isIdentity MulEquiv.apply_symm_apply
 OnlyTactic unfold rw sepcialize

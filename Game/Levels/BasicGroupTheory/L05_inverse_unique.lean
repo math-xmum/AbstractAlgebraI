@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 6
+Level 5
 
 Introduction "
 Note that if inverse exits, then it is unique.
