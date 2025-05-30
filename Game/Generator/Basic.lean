@@ -151,7 +151,7 @@ def mkPrompt (statedump:String) : String :=
   # Output convention
   1. You are not allow to make your own judgement of the tactic.
   2. Use $ $ to embrace the inline math mode.
-  3. Use unicode for math symbol when possible
+  3. Only use unicode for math symbol, do not use latex code, for example,  output \"⊆\" instead of \"\\subset\", output \"α\" instead of \"\\alpha\".
   4. Use \\\\ for latex marcos
   4. The variables/hypothesis name occurred
     before `⊢` should be embraced by curly brackets { }.
