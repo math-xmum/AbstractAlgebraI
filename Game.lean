@@ -6,6 +6,7 @@ import Game.Levels.BasicGroupTheory
 import Game.Levels.GroupHomo
 import Game.Levels.GroupAction
 
+set_option lean4game.showDependencyReasons true
 -- Here's what we'll put on the title screen
 Title "Abstract Algebra Game"
 Introduction
@@ -16,6 +17,8 @@ Welcome to the abstract algebra game!
 Info "
 We plan to cover basic group theory, ring theory and Galois theory.
 "
+
+
 
 /-! Information to be displayed on the servers landing page. -/
 Languages "English"

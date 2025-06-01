@@ -31,7 +31,7 @@ Statement: Mul.isMulMap (fun (x :ℕ) => x * x) := by
   rw [<-Nat.mul_assoc x x (y*y)]
 
 
-
+NewTactic unfold beta_reduce intro rw
 OnlyTactic unfold beta_reduce intro rw
 NewTheorem Nat.mul_assoc Nat.mul_comm
 OnlyTheorem Nat.mul_assoc Nat.mul_comm

@@ -37,6 +37,7 @@ Statement (e : α) (he: Mul.isIdentity e) (φ : α ≃* β): Mul.isIdentity (φ 
   rw [he.2]
 
 
+NewTactic apply_fun unfold rw sepcialize «let»
 OnlyTactic unfold rw sepcialize «let»
 NewTheorem Mul.isIdentity MulEquiv.apply_symm_apply MulEquiv.map_mul
 OnlyTheorem Mul.isIdentity MulEquiv.apply_symm_apply MulEquiv.map_mul

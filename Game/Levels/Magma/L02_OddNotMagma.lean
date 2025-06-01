@@ -29,6 +29,7 @@ Statement : ¬ Set.isAddMagma {x : ℤ | Odd x} := by
   Hint "We need to prove that $1$ is odd, $1$ is odd, and $1 + 1 = 2$ is not odd. The `decide` tactic can automatically prove this kind of simple arithmetic fact."
   decide
 
+NewTactic use decide exact
 NewDefinition Set.isAdMagma
 OnlyDefinition Set.isAdMagma
 OnlyTactic unfold use rw decide push_neg
