@@ -7,38 +7,3 @@ import Game.Levels.Magma.L06_SubNonAssocitavie
 import Game.Levels.Magma.L07_IdentityUnique
 import Game.Levels.Magma.L08_IdenityMagmaIso
 import Game.Levels.Magma.L09_CRnonIso
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

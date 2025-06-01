@@ -75,7 +75,6 @@ Statement (h1 : H.Nonempty) (h2 :∀ {a b:G}, (a∈H) → (b∈H) → ((a * b⁻
 
 
 
-NewTactic assumption
 
 
 NewTheorem IsSubgroup.stepmk Subgroup.mem_of_inv_mul_mem Subgroup.mem_of_mem_mul_inv Subgroup.inv_mem Subgroup.mul_mem

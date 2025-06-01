@@ -47,5 +47,4 @@ Statement  (g k : G) :
   rewrite [Subgroup.mem_coset_iff_diff_mem_subgroup hx2]
   rfl
 
-NewTactic rewrite push_neg
 NewTheorem Classical.or_iff_not_imp_left Classical.or_iff_not_imp_right Subgroup.mem_coset_iff_diff_mem_subgroup
