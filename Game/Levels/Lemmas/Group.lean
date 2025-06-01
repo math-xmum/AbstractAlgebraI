@@ -33,6 +33,10 @@ namespace Set
 variable {α : Type*} [Mul α] (G : Set α) {β : Type*}
 [Add β] (H : Set β)
 
+/--
+Let α be a type with Mul.
+A subset of a magma `α` is a (sub)-magma if for all `x, y ∈ G`, the multiplication of `x` with `y` (on either side) results in an element in `G`.
+-/
 @[to_additive]
 abbrev isMagma := ∀ {x y}, x ∈  G → y ∈ G → x * y ∈ G
 

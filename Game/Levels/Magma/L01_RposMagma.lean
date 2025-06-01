@@ -11,6 +11,8 @@ Level 1
 #check mul_pos_iff_of_pos_left
 #check mul_pos
 
+open Set
+
 Introduction "The following statement claims that the set of positive real numbers forms a magma under multiplication. A magma is simply a set with a binary operation that is closed under that operation."
 
 Statement : Set.isMagma {x : ℝ | x > 0} := by
@@ -27,6 +29,7 @@ Statement : Set.isMagma {x : ℝ | x > 0} := by
   Hint "For the second subgoal, we need to show that y > 0. This follows directly from our hypothesis {hy}."
   exact hy
 
+#check Set.isAddMagma
 
 OnlyTactic unfold use rw decide push_neg
 NewTheorem Set.mem_setOf_eq mul_pos

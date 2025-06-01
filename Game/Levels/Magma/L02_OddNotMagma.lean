@@ -30,6 +30,6 @@ Statement : ¬ Set.isAddMagma {x : ℤ | Odd x} := by
   decide
 
 NewTactic use decide exact
-NewDefinition Set.isAdMagma
-OnlyDefinition Set.isAdMagma
+NewDefinition Set.isAddMagma
+OnlyDefinition Set.isAddMagma
 OnlyTactic unfold use rw decide push_neg
