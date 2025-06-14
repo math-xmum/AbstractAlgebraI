@@ -205,14 +205,14 @@ If $P$ AND $Q$ is true, then $Q$ AND $P$ is true.
 This is actually a statement about the commutativity of conjunction AND, showing that the order of propositions in a conjunction can be swapped.
  \"
 Statement (R :Prop): ∀ (P Q : Prop), P ∧ Q → Q ∧  P  := by
-  Hint \" {R} is a proposition we never use.
+  Hint (hidden := true) \" {R} is a proposition we never use.
   We start by introducing the variables P, Q and the hypothesis h that P ∧ Q is true. You can use `intro`. \"
   intro P Q h
-  Hint \"To prove Q ∧ P, we need to prove both Q and P separately. You can use `constructor` \"
+  Hint (hidden := true) \"To prove Q ∧ P, we need to prove both Q and P separately. You can use `constructor` \"
   constructor
-  Hint \"For the left goal (Q), we can use the right part (second component) of our hypothesis {h}: P ∧ Q. You can use `exact {h}.2\"
+  Hint (hidden := true) \"For the left goal (Q), we can use the right part (second component) of our hypothesis {h}: P ∧ Q. You can use `exact {h}.2\"
   · exact h.2
-  Hint \"For the right goal (P), we can use the left part (first component) of our hypothesis {h}: P ∧ Q\"
+  Hint (hidden := true) \"For the right goal (P), we can use the left part (first component) of our hypothesis {h}: P ∧ Q\"
   · exact h.1
 
 # Your input" ++ statedump

@@ -15,3 +15,5 @@ Statement : ∃ (a b c : ℤ),  (a - b) - c ≠ a - (b - c )  := by
   decide
 
 OnlyTactic use decide
+
+
