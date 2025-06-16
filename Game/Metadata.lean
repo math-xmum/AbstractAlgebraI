@@ -1,6 +1,7 @@
 import GameServer.Commands
 
 import Game.Levels.Lemmas.GroupTheory
+import Game.Levels.Lemmas.Partition
 
 import Mathlib.Tactic.Common
 

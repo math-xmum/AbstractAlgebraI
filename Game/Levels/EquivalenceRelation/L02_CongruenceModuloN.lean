@@ -2,9 +2,9 @@ import Game.Metadata
 import Game.Generator.Basic
 -- import Mathlib
 
-World "Equivalence Relation"
+World "EquivalenceRelation"
 
-Level 1
+Level 2
 
 
 variable {S :Type*}
@@ -26,5 +26,5 @@ Statement (preamble := constructor ): Equivalence (α := ℤ) (fun a b => n ∣ 
   exact dvd_add hxy hyz
 
 
-NewTactic «intro» rfl rw exact simp «have»
+NewTactic «intro» rfl rw exact simp «have» 
 OnlyTactic intro rfl rw exact simp «have»

@@ -7,20 +7,11 @@ theorem Set.ne_empty_of_mem {a : α} {s : Set α} (h : a ∈ s) : s ≠ ∅ := f
    Set.not_mem_empty a $ e ▸ h
 
 
-World "Equivalence Relation"
+World "EquivalenceRelation"
 
-Level 1
+Level 4
 
 variable {α : Type*} (C : Set (Set α))
-
-/-- A collection `c : Set (Set α)` of sets is a partition of `α` into pairwise
-disjoint sets if `∅ ∉ c` and each element `a : α` belongs to a unique set `b ∈ c`. -/
-def IsPartition (c : Set (Set α)) := ∅ ∉ c ∧ ∀ a, ∃! b, b ∈ c ∧ a ∈ b
-
-
-def IsPartition' (c : Set (Set α)) := ∅ ∉ c ∧ ( ⋃₀ c = Set.univ) ∧ ( ∀ a ∈ c,  ∀ b ∈ c, a ∩ b ≠ ∅ → a = b)
-
-#check Odd
 
 
 Introduction "The following statement shows the equivalence between two definitions of a partition of a set. The first definition (IsPartition) states that a collection $C$ of subsets is a partition if it doesn't contain the empty set and every element belongs to exactly one subset in $C$. The second definition (IsPartition') states that $C$ doesn't contain the empty set, covers the whole space, and its elements are pairwise disjoint."
@@ -87,38 +78,5 @@ Statement : IsPartition C ↔ IsPartition' C := by
   Hint "Finally, we apply the disjointness condition to conclude. Use `exact {H2} {c} {hc}.1 {b} {hb}.1 hcb`."
   exact H2 c hc.1 b hb.1 hcb
 
---
--- Statement : IsPartition C ↔ IsPartition' C := by
---   unfold IsPartition
---   unfold IsPartition'
---   apply and_congr_right'
---   constructor
---   rintro H2
---   constructor
---   rw [Set.eq_univ_iff_forall]
---   intro x
---   rw [Set.mem_sUnion]
---   obtain ⟨t, _, _⟩ := H2 x
---   use t
---   intro a ha b hb hab
---   push_neg at hab
---   obtain ⟨x,hax,hbx⟩ := hab
---   specialize H2 x
---   unfold ExistsUnique at H2
---   obtain ⟨c, hc1, hc2⟩ := H2
---   have aeqc := hc2 a ⟨ha,hax⟩
---   have beqc := hc2 b ⟨hb,hbx⟩
---   rw [aeqc, beqc]
---   rintro ⟨H1,H2⟩
---   rw [Set.eq_univ_iff_forall] at H1
---   intro x
---   obtain ⟨b, hb⟩ := H1 x
---   use b
---   constructor
---   exact hb
---   intro c hc
---   have hcb: c ∩ b ≠ ∅ := Set.ne_empty_of_mem (a :=x) ⟨hc.2,hb.2⟩
---   exact H2 c hc.1 b hb.1  hcb
---
 
 OnlyTactic intro rfl rw exact simp «have» refine obtain specialize

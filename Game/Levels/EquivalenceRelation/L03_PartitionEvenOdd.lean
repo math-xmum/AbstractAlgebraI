@@ -2,11 +2,10 @@ import Game.Metadata
 import Game.Generator.Basic
 -- import Mathlib
 
-World "Equivalence Relation"
+World "EquivalenceRelation"
 
-Level 1
+Level 3
 
-def IsPartition (c : Set (Set α)) := ∅ ∉ c ∧ ∀ a, ∃! b, b ∈ c ∧ a ∈ b
 
 
 #check Odd
@@ -46,5 +45,5 @@ Statement : IsPartition {{x : ℕ | Even x}, {x : ℕ | Odd x}} := by
 
 
 
-NewTactic «intro» rfl rw exact simp «have» by_cases simp exfalso by_cases
-OnlyTactic intro rfl rw exact simp «have» by_cases simp exfalso by_cases
+NewTactic «intro» rfl rw exact simp «have» by_cases simp exfalso by_cases use push_neg decide
+OnlyTactic intro rfl rw exact simp «have» by_cases simp exfalso by_cases use push_neg decide

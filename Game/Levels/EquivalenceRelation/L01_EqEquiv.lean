@@ -2,7 +2,7 @@ import Game.Metadata
 import Game.Generator.Basic
 -- import Mathlib
 
-World "Equivalence Relation"
+World "EquivalenceRelation"
 
 Level 1
 
@@ -29,5 +29,5 @@ Statement (preamble := constructor ) : Equivalence (α := S) (· = ·) := by
   exact hyz
 
 
-NewTactic «intro» rfl rw exact
-OnlyTactic intro rfl rw exact
+NewTactic «intro» rfl rw exact unfold
+OnlyTactic intro rfl rw exact unfold
