@@ -10,8 +10,6 @@ Level 1
 variable {α :Type*} [inst: Setoid α]
 
 
-abbrev Setoid.equivclass (x : α):  Set α := {y | x ≈ y}
-
 Statement Setoid.equivclass_nonempty (x : α) : Setoid.equivclass x ≠ ∅ := by
    push_neg
    use x

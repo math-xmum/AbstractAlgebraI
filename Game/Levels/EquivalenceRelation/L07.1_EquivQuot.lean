@@ -9,37 +9,19 @@ Level 1
 
 variable {α :Type*} [inst: Setoid α]
 
-variable (α) in
-abbrev Setoid.equivclasses [Setoid α] := Set.range $ Setoid.equivclass (α := α)
-
-
-lemma Setoid.equivclasses_nonempty (a: Setoid.equivclasses α): a.1.Nonempty := by
-  obtain ⟨a,ha ⟩ := a
-  obtain ⟨x, hx⟩ := ha
-  use x
-  simp [<-hx]
-  exact Setoid.refl _
-
-abbrev Setoid.equivclass': α → Setoid.equivclasses α := fun x => ⟨Setoid.equivclass x, Set.mem_range.1 ⟨x,rfl⟩⟩
-
-
-noncomputable abbrev Setoid.equivclasses.unquot : Setoid.equivclasses α → α :=  fun c => (Setoid.equivclasses_nonempty c).some
-
 variable (c : Setoid.equivclasses α)
 
---#check c.unquot
+Statement : Setoid.quot x = c ↔ x ∈ c.val:= by
+  unfold Setoid.quot
+  simp [Subtype.ext_iff]
+  constructor
+  intro H
+  rw [<-H]
+  simp only [Set.mem_setOf_eq]
+  rfl
+  intro H
+  exact Setoid.equivclass_eq_of_mem H
 
-Statement (f : α → β) (H: ∀ a b, a ≈ b → f a = f b):
-  let fbar :Setoid.equivclasses α → β := fun c => f (Setoid.equivclasses_nonempty c).some
-  ∀ x, f x = fbar ⟨Setoid.equivclass x, by simp⟩
-  := by
-  intro x
-  simp [fbar]
-  apply H
-  let y := Setoid.equivclasses_nonempty ⟨Setoid.equivclass x, by simp⟩ |>.some
-  have H2: y ∈ Setoid.equivclass x := Set.Nonempty.some_mem _
-  rw [Setoid.mem_equivclass_iff_equiv] at H2
-  exact H2
 
 
 
