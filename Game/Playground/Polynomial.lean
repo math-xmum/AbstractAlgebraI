@@ -75,7 +75,7 @@ variable [AddMonoid M]
 
 /-- Note the general `SMul` instance for `Finsupp` doesn't apply as `ℕ` is not distributive
 unless `F i`'s addition is commutative. -/
-instance instNatSMul : SMul ℕ (ι →₀ M) where smul n v := Finsupp'.mapRange (n • ·) (nsmul_zero _) v
+instance (priority := 1000) instNatSMul : SMul ℕ (α →₀ M) where smul n v := Finsupp'.mapRange (n • ·) (nsmul_zero _) v
 
 
 instance (priority := 1000) instAddMonoid : AddMonoid (α →₀ M) :=
@@ -152,6 +152,7 @@ instance (priority := 6000) Polynomial.instMul' : Mul (Polynomial R) where
       rw [AddMonoidAlgebra] at *
       exact ⟨Finsupp'.amul'' a  b⟩
 
+instance (priority := 6000) instNatSMul : SMul R (Polynomial R) where smul r v := ⟨Finsupp'.mapRange (r * ·) (by simp) v.toFinsupp⟩
 
 def C : R → Polynomial R :=
   fun r => ⟨Finsupp'.single 0 r⟩
@@ -168,11 +169,12 @@ def x : Polynomial ℕ:= X
 #eval ((x + x + x) : Polynomial ℕ)
 #eval (C 2 + (x+x+x)*x + x : Polynomial ℕ)
 #eval (C 1 + x) * (C 1 + x)
+#eval (2 : ℕ ) • x
 
 
 example : (x + x) * x =  x * (x + x) := by decide
 
-example : (C 1 + x) * (C 1 + x) = C 1 + x + x + x*x := by decide
+example : (C 1 + x) * (C 1 + x) = C 1 + (2 : ℕ) • x + x*x := by decide
 
 
 end
