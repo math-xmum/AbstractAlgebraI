@@ -16,22 +16,21 @@ def IsPartition' (c : Set (Set α)) := ∅ ∉ c ∧ ( ⋃₀ c = Set.univ) ∧ 
 
 
 namespace Setoid
+
 variable {α :Type*} [inst: Setoid α] {x : α}
 
-abbrev equivclass (x : α):  Set α := {y | x ≈ y}
+-- abbrev equivclass (x : α):  Set α := {y | x ≈ y}
 
-
-lemma mem_selfequivclass (x : α) : x ∈ Setoid.equivclass x  := by
+lemma mem_selfequivclass (x : α) : x ∈ {y | x ≈ y} := by
    rewrite [Set.mem_setOf_eq]
    exact Setoid.refl _
 
-
-lemma mem_equivclass_iff_equiv (x : α): y ∈ Setoid.equivclass x ↔ x ≈ y := by
+lemma mem_equivclass_iff_equiv (x : α): y ∈ {y | x ≈ y} ↔  x ≈ y := by
   rewrite [Set.mem_setOf_eq]
   rfl
 
 
-lemma equivclass_eq_iff_equiv  (x y: α): Setoid.equivclass x = Setoid.equivclass y ↔ x ≈ y := by
+lemma equivclass_eq_iff_equiv  {x y: α}: {z | x ≈ z} = {z | y ≈ z}  ↔ x ≈ y := by
   constructor <;> intro H
   have hy := Setoid.mem_selfequivclass y
   rw [<-H] at hy
@@ -41,23 +40,17 @@ lemma equivclass_eq_iff_equiv  (x y: α): Setoid.equivclass x = Setoid.equivclas
   repeat rw [Setoid.mem_equivclass_iff_equiv]
   constructor
   intro H1
-  replace H := Setoid.symm H
-  exact Setoid.trans H H1
+  exact Setoid.trans (Setoid.symm H) H1
   intro H1
   exact Setoid.trans H H1
 
-
-lemma equivclass_nonempty (x : α) : Setoid.equivclass x ≠ ∅ := by
+lemma equivclass_nonempty (x : α) : {y | x ≈ y} ≠ ∅ := by
   rw [ne_eq]
   intro h
   apply Set.not_mem_empty x
   rw [<-h, Set.mem_setOf_eq]
 
 
-
-
-variable (α) in
-abbrev equivclasses [Setoid α] := {c : Set α // ∃ x, c =  Setoid.equivclass x }
 
 
 variable (α) in
@@ -86,6 +79,9 @@ lemma mem_quot (x : α) : x ∈ (Setoid.quot x : Equivclass α)  := by
 lemma mem_quot_iff_equiv (x : α): y ∈ Setoid.quot x ↔ x ≈ y := by
   rfl
 
+lemma mem_quot_iff_equiv' (x : α): y ∈ Setoid.quot x ↔ y ≈ x := by
+  rw [mem_quot_iff_equiv]
+  exact ⟨Setoid.symm,Setoid.symm⟩
 
 lemma mem_quot_self (x : α): x ∈ Setoid.quot x := by
   exact Setoid.refl x
@@ -96,8 +92,6 @@ lemma exist_quot (c : Equivclass α) : ∃ x, c = Setoid.quot x  := by
   use x
   unfold quot
   simp only [hx]
-
-
 
 /--
 The equivalence relation `≈` is symmetric.
@@ -112,7 +106,7 @@ lemma equiv_iff_of_equiv {x y z : α} (H : x ≈ y) : x ≈ z ↔ y ≈ z := by
   intro H2
   exact Setoid.trans H H2
 
-lemma mem_equivclass_of_equiv {c : Setoid.Equivclass α}  (H : x ∈ c) :  x ≈ y  ↔  y ∈ c  := by
+lemma equiv_iff_mem_same_class {c : Setoid.Equivclass α}  (H : x ∈ c) :  x ≈ y  ↔  y ∈ c  := by
   obtain ⟨z,hz⟩:= exist_quot c
   rw [hz] at H
   rw [hz]
@@ -120,8 +114,6 @@ lemma mem_equivclass_of_equiv {c : Setoid.Equivclass α}  (H : x ∈ c) :  x ≈
   rw [mem_quot_iff_equiv]
   replace H := Setoid.symm H
   exact Setoid.equiv_iff_of_equiv H
-
-
 
 lemma quot_eq_iff_equiv {x y: α} : Setoid.quot x = Setoid.quot y ↔ x ≈ y := by
   constructor
@@ -136,7 +128,7 @@ lemma quot_eq_iff_equiv {x y: α} : Setoid.quot x = Setoid.quot y ↔ x ≈ y :=
   repeat rw [Setoid.mem_quot_iff_equiv]
   exact Setoid.equiv_iff_of_equiv H
 
-lemma mem_equivclass_iff_eq_quot {x : α} {c : Equivclass α}  : x ∈ c ↔ c = Setoid.quot x:= by
+lemma mem_quot_iff_eq_quot {x : α} {c : Equivclass α}  : x ∈ c ↔ c = Setoid.quot x:= by
   obtain ⟨y, hy⟩ := exist_quot c
   rw [hy]
   rw [Setoid.mem_quot_iff_equiv]
@@ -144,14 +136,14 @@ lemma mem_equivclass_iff_eq_quot {x : α} {c : Equivclass α}  : x ∈ c ↔ c =
   exact Setoid.quot_eq_iff_equiv
 
 
-lemma equivclass_nonempty' (c : Equivclass α) : c.1.Nonempty := by
+lemma quot_nonempty' (c : Equivclass α) : c.1.Nonempty := by
   obtain ⟨z, hz⟩ := exist_quot c
   rw [hz]
   use z
   simp only [Set.mem_setOf_eq, refl]
 
 
-noncomputable abbrev Equivclass.unquot : Equivclass α → α :=  fun c => (Setoid.equivclass_nonempty' c).some
+noncomputable abbrev Equivclass.unquot : Equivclass α → α :=  fun c => (Setoid.quot_nonempty' c).some
 
 lemma Equivclass.unquot_mem {c : Equivclass α} : c.unquot ∈ c := by
   exact Set.Nonempty.some_mem _
@@ -159,7 +151,7 @@ lemma Equivclass.unquot_mem {c : Equivclass α} : c.unquot ∈ c := by
 @[simp]
 lemma Equivclass.quot_unquot_eq {c : Equivclass α}: Setoid.quot c.unquot = c := by
   symm
-  rw [<-Setoid.mem_equivclass_iff_eq_quot]
+  rw [<-Setoid.mem_quot_iff_eq_quot]
   exact c.unquot_mem
 
 

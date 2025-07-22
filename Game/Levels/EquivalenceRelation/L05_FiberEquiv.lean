@@ -4,7 +4,7 @@ import Game.Generator.Basic
 
 World "EquivalenceRelation"
 
-Level 1
+Level 5
 
 
 variable {S :Type*}

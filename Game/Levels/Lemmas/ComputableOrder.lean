@@ -9,12 +9,14 @@ variable {α : Type*}  {f : α → α} {x : α} [DecidableEq α]
 abbrev peroidAux {x : α} {f : α → α} (h : x ∈ periodicPts f): ℕ :=
 Nat.find h
 
-example : addOrderOf (1 : ZMod 4) = 4 := by 
-  native_decide 
+/-
+example : addOrderOf (1 : ZMod 4) = 4 := by
+  native_decide
+-/
 
 
 @[to_additive]
-abbrev orderOfFintype  [DecidableEq α] [Group α] [Fintype α] (x : α) 
+abbrev orderOfFintype  [DecidableEq α] [Group α] [Fintype α] (x : α)
 := Nat.find (⟨Fintype.card α, ⟨Fintype.card_pos_iff.2 ⟨1⟩ ,by exact pow_card_eq_one⟩⟩ : ∃ n, n>0 ∧ x^n = 1)
 
 @[to_additive (attr:=simp) addOrderOfFintype_eq]
@@ -37,13 +39,13 @@ lemma orderOfFintype_eq {x : α} [DecidableEq α] [Group α] [Fintype α] : orde
   unfold IsFixedPt
   simp
 
-
-example : addOrderOf (1 : ZMod 4) = 4 := by 
-  aesop 
+#eval addOrderOfFintype (2 : ZMod 4)
+example : addOrderOf (1 : ZMod 4) = 4 := by
+  aesop
 
 lemma aa : addOrderOf (1 : ZMod 4) = 4 := by
   simp
-  native_decide
+  decide
 
 
 

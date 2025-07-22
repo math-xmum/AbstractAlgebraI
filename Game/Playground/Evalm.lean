@@ -55,6 +55,28 @@ unsafe def elabEvalExpr : Lean.Elab.Term.TermElab
   return (←ee)
 | _ => fun _ => Elab.throwUnsupportedSyntax
 
+#synth Repr $ Equiv.Perm (Fin 3)
+
+
+/-
+#eval (Finset.univ : Finset (Equiv.Perm (Fin 3)))
+abbrev allperm := (Finset.univ : Finset (Equiv.Perm (Fin 3)))
+lemma foo' : allperm = evalm% allperm := by decide
+-/
+
+/-
+open BigOperators Finset Fin
+open scoped BigOperators Finset Fin
+
+#check @Singleton.singleton (ℕ) (Finset ℕ) _ 1
+#check ({1,2^2} : Finset ℕ)
+lemma foo : 2^2 = eval% 2^2 := by decide
+#print foo
+#eval ({1,2^2} : Finset ℕ)
+lemma bar: ({1,2^2} : Finset ℕ) = evalm% ({1, 2^2} : Finset ℕ) := by decide
+#print bar
+-/
+
 /-
 section test
 #check @Singleton.singleton (ℕ) (Finset ℕ) _ 1
