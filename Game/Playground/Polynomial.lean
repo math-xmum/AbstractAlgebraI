@@ -1,12 +1,17 @@
 import Mathlib
 
+/-
+failed to compile definition, consider marking it as 'noncomputable' because it depends on 'Polynomial.X', and it does not have executable code
+def x : Polynomial ℕ:= Polynomial.X
+
+-/
+
 section
 namespace Finsupp'
 variable {α : Type*} [DecidableEq α] [DecidableEq M]
 
 section
 variable [Zero M] [Zero N] [Zero P] [DecidableEq P]
-
 
 
 def single (a : α)  (b :M): α →₀ M  where
@@ -147,35 +152,27 @@ instance (priority := 6000) Polynomial.instMul' : Mul (Polynomial R) where
       rw [AddMonoidAlgebra] at *
       exact ⟨Finsupp'.amul'' a  b⟩
 
+
+def C : R → Polynomial R :=
+  fun r => ⟨Finsupp'.single 0 r⟩
+def X := Polynomial.ofFinsupp <| Finsupp'.single 1 (1:R)
+
 end
 
 
-namespace Finsupp'
-
-variable {a :Type*} {R : Type*} [Zero R] [DecidableEq α] [DecidableEq R]
-
-abbrev aa : ({2,3} : Finset ℕ) → Fin 2 := fun x =>
-  if x.1 = 2 then 0 else 1
-
-
-
-
-end Finsupp'
-
 section
 
-def X := Polynomial.ofFinsupp <| Finsupp'.single 1 1
-def XX := Polynomial.ofFinsupp <| Finsupp'.single 2 1
+def x : Polynomial ℕ:= X
 
-#eval ((X + X + X) : Polynomial ℕ)
-#eval ((X+X+X)*X + X : Polynomial ℕ)
-
-#eval X
-
-example : X*(X+X) = (X+X)*X := by decide
+#eval (C 2) + (C 3)
+#eval ((x + x + x) : Polynomial ℕ)
+#eval (C 2 + (x+x+x)*x + x : Polynomial ℕ)
+#eval (C 1 + x) * (C 1 + x)
 
 
+example : (x + x) * x =  x * (x + x) := by decide
 
+example : (C 1 + x) * (C 1 + x) = C 1 + x + x + x*x := by decide
 
 
 end
