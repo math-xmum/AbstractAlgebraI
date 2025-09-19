@@ -1,11 +1,13 @@
 import Game.Metadata
 import Game.Levels.BasicLean
+/-
 import Game.Levels.BasicFunctions
 import Game.Levels.EquivalenceRelation
 import Game.Levels.Magma
 import Game.Levels.BasicGroupTheory
 import Game.Levels.GroupHomo
 import Game.Levels.GroupAction
+-/
 
 set_option lean4game.showDependencyReasons true
 -- Here's what we'll put on the title screen
