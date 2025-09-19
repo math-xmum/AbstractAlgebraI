@@ -12,7 +12,7 @@ Introduction "This level gets you familiar with the game interface."
 Introduction "The following statement claims that if $x = 2$ and $y = 4$, then $x + x = y$.
 This is a simple arithmetic proof showing that the sum of $x$ with itself equals $y$ given the initial conditions."
 
-variable (x y : ℕ)
+variable (x y : Nat)
 
 Statement (h : x = 2) (g: y = 4) : x + x = y := by
   Hint "You can use rw [h] to rewrite `x` by `2`."

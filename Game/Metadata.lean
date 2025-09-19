@@ -1,5 +1,5 @@
 import GameServer
-import Mathlib.Tactic
+--import Mathlib.Tactic
 
 --import Game.Levels.Lemmas.GroupTheory
 --import Game.Levels.Lemmas.Partition
