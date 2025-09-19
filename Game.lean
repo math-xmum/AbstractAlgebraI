@@ -26,7 +26,7 @@ We plan to cover basic group theory, ring theory and Galois theory.
 /-! Information to be displayed on the servers landing page. -/
 Languages "English"
 CaptionShort "Abstract Algebra Game "
-CaptionLong "Abstract Algebra Game for MAT205 Xiamen University Malaysia."
+CaptionLong "Abstract Algebra Game for MAT211 and MAT205 Xiamen University Malaysia."
 -- Prerequisites "" -- add this if your game depends on other games
 -- CoverImage "images/cover.png"
 
