@@ -1,6 +1,5 @@
 import Game.Levels.BasicLean.L01_rfl
 import Game.Levels.BasicLean.L02_rw
-/-
 import Game.Levels.BasicLean.L03_Subset_definition
 import Game.Levels.BasicLean.L04_subset_trans
 import Game.Levels.BasicLean.L05_subset_rfl
@@ -11,7 +10,6 @@ import Game.Levels.BasicLean.L09_union_assoc
 import Game.Levels.BasicLean.L10_inter_subset
 
 
--/
 
 
 World "BasicLean"

@@ -20,3 +20,5 @@ Statement subset_trans' {α : Type*} (r s t : Set α): r ⊆ s → s ⊆ t → r
 
 
 Conclusion "Level Completed!"
+
+NewTactic intro exact apply
