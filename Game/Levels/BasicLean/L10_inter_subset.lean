@@ -15,14 +15,16 @@ Statement  {α : Type*} (s t : Set α) : s ⊆ t → s ∩ t =  s  := by
   rw [Set.mem_inter_iff]
   Hint "To prove the equivalence, we need to show both directions: {x} ∈ {s} ∧ {x} ∈ {t} → {x} ∈ {s}, and {x} ∈ {s} → {x} ∈ {s} ∧ {x} ∈ {t}. Use `constructor` to split the goal into two parts."
   constructor
-  Hint "For the left direction, we need to show {x} ∈ {s} ∧ {x} ∈ {t} → {x} ∈ {s}. This is straightforward since {x} ∈ {s} already holds in the hypothesis. Use `exact fun ha ↦ ha.1`."
+  Hint "For the left direction, we need to show {x} ∈ {s} ∧ {x} ∈ {t} → {x} ∈ {s}. This is straightforward since {x} ∈ {s} already holds in the hypothesis. Use `exact fun ha ↦ ha.1`. or use rintro. "
   exact fun ha ↦ ha.1
-  Hint "For the right direction, we need to show {x} ∈ {s} → {x} ∈ {s} ∧ {x} ∈ {t}. Use the fact that {h} gives us {x} ∈ {t} whenever {x} ∈ {s}. Use `exact fun ha ↦ ⟨ha, h ha⟩`."
+  Hint "For the right direction, we need to show {x} ∈ {s} → {x} ∈ {s} ∧ {x} ∈ {t}. Use the fact that {h} gives us {x} ∈ {t} whenever {x} ∈ {s}. Use `exact fun ha ↦ ⟨ha, h ha⟩`. Or you case use rintro "
   exact fun ha ↦ ⟨ha, h ha⟩
 
 
 
 Conclusion "Level Completed!"
 
-NewTactic pick_goal «have» «repeat» replace aesop simp_all specialize trivial «let» norm_cast unfold decide native_decide
-simp simp_rw linarith assumption push_neg rewrite
+
+--NewTactic unfold
+--NewTactic pick_goal «have» «repeat» replace aesop simp_all specialize trivial «let» norm_cast unfold decide native_decide
+--simp simp_rw linarith assumption push_neg rewrite

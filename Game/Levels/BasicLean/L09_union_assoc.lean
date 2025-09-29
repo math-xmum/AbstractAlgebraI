@@ -63,4 +63,4 @@ Statement {α : Type*} (s t r : Set α): (s ∪ t) ∪ r = s ∪ (t ∪ r) := by
 
 
 Conclusion "Level Completed!"
-NewTactic left right
+NewTactic left right rcases

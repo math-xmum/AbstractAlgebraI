@@ -9,17 +9,26 @@ Introduction "The following statement shows that the composition of two surjecti
 
 Statement {α β γ : Type} (f : α → β) (g : β → γ) (hf : Function.Surjective f) (hg : Function.Surjective g) : Function.Surjective (g ∘ f) := by
   Hint "To prove that $g ∘ f$ is surjective, we need to show that for every $y$ in $γ$, there exists some $a$ in $α$ such that $(g ∘ f)(a) = y$. We start by introducing an arbitrary element y of $γ$."
-  intro y
-  Hint "Since {g} is surjective (by {hg}), there exists some x in $β$ such that $g(x) = y$. We can use `rcases` with {hg} {y} to obtain this witness."
-  rcases hg y with ⟨x, hx⟩
-  Hint "Similarly, since {f} is surjective (by {hf}), there exists some a in $α$ such that $f(a) = x$. Again, we use `rcases` with {hf} {x} to obtain this witness."
-  rcases hf x with ⟨a, ha⟩
-  Hint "We now claim that this {a} is the element we're looking for. We use `use` to specify {a} as our candidate."
+  Hint "First unfold Function.Surjective"
+  unfold Function.Surjective at *
+  Hint "Next, we introduce an arbitrary element $c$ in $γ$."
+  intro c
+  Hint "Since $g$ is surjective, there exists some $b$ in $β$ such that $g(b) = c$. We can use `obtain` to obtain such a $b$ and the equality $hb$."
+  obtain ⟨b,hb⟩ := hg c
+  Hint "Since $f$ is surjective, there exists some $a$ in $α$ such that $f(a) = b$. We can use `obtain` to obtain such a $a$ and the equality $ha$."
+  obtain ⟨a,ha⟩ := hf b
+  Hint "We can now use $a$ as our witness for the existential. We can use `use {a}` to set up the goal $(g ∘ f)(a) = c$."
   use a
-  Hint "We need to show $(g ∘ f)(a) = y$. Using our hypotheses {hx} ($g(x) = y$) and {ha} ($f(a) = x$), we can rewrite the goal. We use `rw` with these equalities."
-  rw [← hx, ← ha]
-  Hint "After rewriting, we're left with $(g ∘ f)(a) = g(f(a))$, which is true by definition of function composition. The `rfl` tactic finishes the proof."
+  Hint "We can now use $hb$ and $ha$ to rewrite the goal $(g ∘ f)(a) = c$."
+  rw [<-hb]
+  Hint "We can now use $ha$ to rewrite the goal $(g ∘ f)(a) = c$."
+  rw [<-ha]
+  Hint "The goal now reduces to $g(f(a)) = g(b)$ and $f(a) = b$, which is true by definition of function composition. We can use `rfl` to finish the proof."
   rfl
 
-Conclusion "Level Completed!"
-NewTactic use rcases intro rw
+
+
+
+Conclusion "Level Completed! We unlock the following theorem: Function.Surjective.comp."
+NewTactic use obtain intro rw
+NewTheorem Function.Surjective.comp

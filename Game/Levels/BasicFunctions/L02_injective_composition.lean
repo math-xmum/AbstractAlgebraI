@@ -21,4 +21,5 @@ Statement {α β γ : Type} (f : α → β) (g : β → γ) (hf : Function.Injec
 
 NewTactic apply intro exact rw unfold
 OnlyTactic apply intro exact rw unfold
-Conclusion "Level Completed!"
+Conclusion "Level Completed! We unlock the following theorem: Function.Injective.comp"
+NewTheorem Function.Injective.comp

@@ -10,4 +10,6 @@ Statement {α β γ : Type} (f : α → β) : Function.Surjective f ↔ ∀ y, �
   rfl
 
 
-Conclusion "Level Completed!"
+OnlyTactic rfl
+Conclusion "Level Completed! We unlock the following definitions: Function.Surjective"
+NewDefinition Function.Surjective

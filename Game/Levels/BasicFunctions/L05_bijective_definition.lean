@@ -10,5 +10,6 @@ Statement {α β : Type} (f : α → β) : Function.Bijective f ↔ Function.Inj
   Hint "This is a definitional equality in Lean, meaning the left-hand side (Bijective) is defined to be exactly the right-hand side (Injective ∧ Surjective). Therefore, we can prove it immediately using reflexivity (`rfl`)."
   rfl
 
-Conclusion "Level Completed!"
+Conclusion "Level Completed! We unlock the following definition: Function.Bijective"
 NewTactic use rfl
+NewDefinition Function.Bijective
