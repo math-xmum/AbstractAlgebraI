@@ -19,5 +19,5 @@ Statement {α β γ : Type} (f : α → β) (g : β → γ) (hf : Function.Bijec
 
 Conclusion "Level Completed! We unlock the following theorem: Function.Bijective.comp"
 
-NewTactic intro apply exact use rw rfl
+NewTactic constructor intro apply exact use rw rfl
 NewTheorem Function.Bijective.comp

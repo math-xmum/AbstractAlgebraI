@@ -1,6 +1,10 @@
 import GameServer
 import Mathlib.Tactic
 import Mathlib.Data.Set.Basic
+import Mathlib.Data.Setoid.Basic
+import Mathlib.Data.Setoid.Partition
+import Mathlib.Logic.Function.FiberPartition
+import Game.Lemmas.Logic
 
 --import Game.Levels.Lemmas.GroupTheory
 --import Game.Levels.Lemmas.Partition

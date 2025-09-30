@@ -1,5 +1,4 @@
 import Game.Metadata
-import Game.Generator.Basic
 -- import Mathlib
 
 #check Set.not_mem_empty
