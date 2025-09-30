@@ -53,6 +53,8 @@ require "leanprover-community" / mathlib @ git leanVersion
 
 require mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ leanVersion
 
+require "reap" from git "https://github.com/frenzymath/reap.git" @ "main"
+
 -- require "leanprover-community" / mathlib @ git leanVersion
 
 /-!
