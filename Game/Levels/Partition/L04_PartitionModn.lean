@@ -23,7 +23,7 @@ Statement (preamble :=
   have h2 : Function.Surjective $ Fin.ofNat n := ?_
 ): Setoid.IsPartition $ Set.range (fun (y : Fin n) ↦ {x : ℕ | x % n = y}) := by
   Hint "Fin.ofNat n : ℕ → Fin n is the map send a natural number to its residue r modulo n (0 ≤ r < n).
-  We start by rewriting the goal using the lemma `h1`."
+  We start by rewriting the goal using the lemma `h1`. Since {h1} appears in the inner part of the goal, we should use `simp_rw` instead of `rw`."
   simp_rw [h1]
   Hint "We now apply the lemma `Function.fiber_of_surjective_partition`."
   exact Function.fiber_of_surjective_partition h2
