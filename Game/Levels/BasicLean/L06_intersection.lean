@@ -13,5 +13,5 @@ Statement  {α : Type*} (s t : Set α) (x : α) : x ∈ s ∩ t ↔ x ∈ s ∧ 
   "
   rw [Set.mem_inter_iff]
 
-Conclusion "Level Completed!"
+Conclusion "Level Completed! We unlock the theorem: Set.mem_inter_iff"
 NewTheorem Set.mem_inter_iff

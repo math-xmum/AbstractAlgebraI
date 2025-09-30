@@ -12,5 +12,5 @@ Statement {α : Type*} (s t : Set α) (x : α) : x ∈ s ∪ t ↔ x ∈ s ∨ x
   rw [Set.mem_union]
 
 
-Conclusion "Level Completed!"
+Conclusion "Level Completed! We unlock the theorem: Set.mem_union"
 NewTheorem Set.mem_union

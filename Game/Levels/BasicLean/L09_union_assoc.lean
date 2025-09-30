@@ -62,5 +62,6 @@ Statement {α : Type*} (s t r : Set α): (s ∪ t) ∪ r = s ∪ (t ∪ r) := by
 
 
 
-Conclusion "Level Completed!"
+Conclusion "Level Completed! We unlock the theorem: Set.union_assoc."
 NewTactic left right rcases
+NewTheorem Set.union_assoc

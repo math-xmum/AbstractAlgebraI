@@ -22,8 +22,8 @@ Statement  {α : Type*} (s t : Set α) : s ⊆ t → s ∩ t =  s  := by
 
 
 
-Conclusion "Level Completed!"
-
+Conclusion "Level Completed! We now unlock a collection of theorems related to set intersection."
+NewTheorem Set.left_eq_inter Set.right_eq_inter Set.inter_subset_left Set.inter_subset_right
 
 --NewTactic unfold
 --NewTactic pick_goal «have» «repeat» replace aesop simp_all specialize trivial «let» norm_cast unfold decide native_decide

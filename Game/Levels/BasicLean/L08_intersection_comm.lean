@@ -23,5 +23,6 @@ Statement {α : Type*} (s t : Set α): s ∩ t = t ∩ s := by
 
 
 
-Conclusion "Level Completed!"
+Conclusion "Level Completed! We unlock the theorem: Set.inter_comm"
 NewTactic ext rintro constructor
+NewTheorem Set.inter_comm

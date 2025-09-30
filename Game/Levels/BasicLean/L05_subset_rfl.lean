@@ -12,4 +12,5 @@ Statement  {α : Type*} (s : Set α) : s ⊆ s := by
   Hint "The goal is to show that {x} is in {s}, which is already given by the hypothesis {xs}. You can use `exact {xs}`."
   exact xs
 
-Conclusion "Level Completed!"
+Conclusion "Level Completed! We unlock the following theorem: subset_rfl"
+NewTheorem subset_rfl

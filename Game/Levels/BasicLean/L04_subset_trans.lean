@@ -19,6 +19,7 @@ Statement {α : Type*} (r s t : Set α): r ⊆ s → s ⊆ t → r ⊆ t := by
   exact hx
 
 
-Conclusion "Level Completed!"
+Conclusion "Level Completed! We unlock the following theorem: subset_trans"
 
 NewTactic intro exact apply
+NewTheorem subset_trans
