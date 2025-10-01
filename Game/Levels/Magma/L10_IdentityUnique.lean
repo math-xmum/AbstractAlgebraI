@@ -4,7 +4,7 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 7
+Level 10
 
 Introduction "
 Suppose $G$ is a set with a binary operation $*$.

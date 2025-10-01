@@ -4,7 +4,7 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 2
+Level 3
 
 open Set
 
@@ -35,7 +35,6 @@ Statement : ¬ Set.isAddMagma {x : ℤ | Odd x} := by
   Hint "We need to prove that $1$ is odd, $1$ is odd, and $1 + 1 = 2$ is not odd. The `decide` tactic can automatically prove this kind of simple arithmetic fact."
   decide
 
-NewTactic use decide exact
 NewDefinition Set.isAddMagma
 OnlyDefinition Set.isAddMagma
 OnlyTactic unfold use rw decide push_neg

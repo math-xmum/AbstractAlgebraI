@@ -4,7 +4,7 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 8
+Level 11
 
 
 variable (α β:Type*) [Mul α] [Mul β]
@@ -37,7 +37,7 @@ Statement (e : α) (he: Mul.isIdentity e) (φ : α ≃* β): Mul.isIdentity (φ 
   rw [he.2]
 
 
-NewTactic apply_fun unfold rw sepcialize «let»
+NewTactic apply_fun sepcialize «let»
 OnlyTactic unfold rw sepcialize «let»
 NewTheorem Mul.isIdentity MulEquiv.apply_symm_apply MulEquiv.map_mul
 OnlyTheorem Mul.isIdentity MulEquiv.apply_symm_apply MulEquiv.map_mul

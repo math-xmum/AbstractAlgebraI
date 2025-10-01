@@ -1,10 +1,9 @@
 import Game.Metadata
 
-import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 3
+Level 4
 
 open Set
 
