@@ -29,6 +29,8 @@ Statement (f : α → β) :
     Hint (hidden := true) "Use `rw` to rewrite the goal using the hypothesis H."
     rw [H]
 
-Conclusion "Level Completed! We unlock the theorem: SetRel.exists_graph_eq_iff."
+Conclusion "Level Completed!
+It can be shown relations R satisfy the following property: for each element a in α, there exists a unique element b in β such that (a,b) ∈ R is the graph of a unique function f. This establishes a bijection betweenfunctions and a subset of relations (between α and β).
+We unlock the theorem: SetRel.exists_graph_eq_iff."
 
 NewTheorem SetRel.exists_graph_eq_iff

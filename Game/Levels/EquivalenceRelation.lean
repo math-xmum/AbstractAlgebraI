@@ -1,4 +1,4 @@
-import Game.Levels.EquivalenceRelation.L01_EqEquiv_trans_iff
+import Game.Levels.Equivalence.L02_EqEquiv_trans_iff
 import Game.Levels.EquivalenceRelation.L02_EqEquiv
 import Game.Levels.EquivalenceRelation.L03_CongruenceModuloN
 import Game.Levels.EquivalenceRelation.L04_PartitionDefinition
