@@ -2,9 +2,9 @@ import Game.Metadata
 import Game.Generator.Basic
 -- import Mathlib
 
-World "EquivalenceRelation"
+World "Equivalence"
 
-Level 2
+Level 3
 
 
 variable {α:Type*}
@@ -14,7 +14,7 @@ variable {α:Type*}
 
 Introduction "The following statement proves that the equality relation ($ = $) on a type α is an equivalence relation. An equivalence relation must satisfy three properties: reflexivity (every element is equal to itself), symmetry (if $x = y$ then $y = x$), and transitivity (if $x = y$ and $y = z$ then $x = z$)."
 
-Statement (preamble := refine ⟨?refl, ?symm, ?trans⟩) : Equivalence (α := α) (· = ·) := by
+Statement (preamble := constructor) : Equivalence (α := α) (· = ·) := by
   Hint (hidden := true) "We need to prove three cases: reflexivity, symmetry, and transitivity. The first case is reflexivity, where we need to show $∀ (x : α) , x = x$. We start by introducing an arbitrary element x of type {α} ."
   intro x
   Hint (hidden := true) "The reflexivity case is straightforward because $x = x$ is true by definition. We can use the `rfl` tactic to close this goal."

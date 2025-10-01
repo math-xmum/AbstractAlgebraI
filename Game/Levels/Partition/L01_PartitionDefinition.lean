@@ -14,3 +14,5 @@ Statement : Setoid.IsPartition C ↔ (∅ ∉ C ∧ ∀ (a : α), ∃! b : Set �
   rfl
 
 OnlyTactic rfl
+
+NewDefinition Setoid.IsPartition

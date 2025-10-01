@@ -2,6 +2,7 @@ import Game.Metadata
 import Game.Levels.BasicLean
 import Game.Levels.BasicFunctions
 import Game.Levels.Partition
+import Game.Levels.Equivalence
 /-
 import Game.Levels.BasicFunctions
 import Game.Levels.EquivalenceRelation

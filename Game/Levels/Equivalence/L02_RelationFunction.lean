@@ -1,9 +1,8 @@
 import Game.Metadata
-import Reap
 
-World "Equivalence Relation"
+World "Equivalence"
 
-Level 1
+Level 2
 
 
 variable {α β : Type*}
