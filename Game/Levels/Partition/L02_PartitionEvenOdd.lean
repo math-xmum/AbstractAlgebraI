@@ -108,3 +108,5 @@ Statement :
 
 NewTactic exfalso trivial «have» simp trivial push_neg contradiction
 NewTheorem Set.mem_pair_iff Nat.not_odd_iff_even Nat.not_even_iff_odd
+
+#check (⟨ 0, 1 ⟩ : ℕ × ℕ )
