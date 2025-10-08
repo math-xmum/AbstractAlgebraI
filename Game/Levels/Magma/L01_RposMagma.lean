@@ -32,6 +32,6 @@ Statement : Set.isMagma {x : ℝ | x > 0} := by
 #check Set.isAddMagma
 
 OnlyTactic unfold use rw decide push_neg
-NewTheorem Set.mem_setOf_eq mul_pos
+NewTheorem  mul_pos
 OnlyTheorem Set.mem_setOf_eq mul_pos
 NewDefinition Set.isMagma Set.isAddMagma
