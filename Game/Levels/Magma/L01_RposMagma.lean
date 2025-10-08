@@ -13,7 +13,11 @@ Level 1
 
 open Set
 
-Introduction "The following statement claims that the set of positive real numbers forms a magma under multiplication. A magma is simply a set with a binary operation that is closed under that operation."
+Introduction "
+Recall that a magma is a set `G` with a binary operation `*` such that `a * b` is well-defined for all `a, b` in  `G`.
+
+The following statement claims that the set of positive real numbers forms a magma under multiplication. A magma is simply a set with a binary operation that is closed under that operation.
+"
 
 Statement : Set.isMagma {x : ℝ | x > 0} := by
   Hint "We need to show that the set of positive real numbers is closed under multiplication. Let's unfold the definition of `Set.isMagma`."

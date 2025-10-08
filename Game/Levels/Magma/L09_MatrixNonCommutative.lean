@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "Magma"
 
-Level 8
+Level 9
 
 Introduction "We show that matrix multiplication is not commutative."
 

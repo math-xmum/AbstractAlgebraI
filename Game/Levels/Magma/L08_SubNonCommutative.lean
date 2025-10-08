@@ -4,7 +4,7 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 7
+Level 8
 
 Introduction "We show that subtraction is not commutative."
 

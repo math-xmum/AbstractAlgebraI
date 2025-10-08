@@ -23,7 +23,11 @@ Statement : ¬ Set.isAddMagma {x : ℤ | Odd x} := by
 -/
 
 
-Introduction "The following statement claims that the set of odd integers is not closed under addition, meaning it does not form an additive magma."
+Introduction "
+ If one use `+` to denote the binary operation on a magma `G`, then we call `G` an additive magma.
+
+  The following statement claims that the subset of odd integers is not closed under addition, meaning it does not form an additive (sub) magma of `ℤ`.
+  "
 
 Statement : ¬ Set.isAddMagma {x : ℤ | Odd x} := by
   Hint "We start by unfolding the definition of `isAddMagma` to see what we need to disprove."

@@ -4,7 +4,7 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 9
+Level 10
 
 Introduction "The following statement claims that there exist integers $a$, $b$, and $c$ such that $(a - b) - c ≠ a - (b - c)$. This shows that subtraction is not associative."
 

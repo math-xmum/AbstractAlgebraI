@@ -111,3 +111,29 @@ class HasInv (G : Set α) where
 class IsGroup (G : Set α) extends IsMonoid G, HasInv G
 -/
 end Set
+
+
+section inverse
+
+
+/--
+Suppose α is a monoid.
+`b :  α ` is called a left inverse of `a` if `b * a = 1`.
+-/
+abbrev LeftInverse [Monoid α ](a b : α) := b * a = 1
+
+
+/--
+Suppose α is a monoid.
+`b : α` is called a right inverse of `a` if `b * a = 1`.
+-/
+abbrev RightInverse [Monoid α ](a b : α) := a * b = 1
+
+/--
+Suppose α is a monoid.
+`b : α` is called an inverse of `a` if it is both left and right inverse of `a`, i.e. `b * a = 1` and `a * b = 1`.
+-/
+abbrev Inverse [Monoid α ](a b : α) := LeftInverse a b ∧ RightInverse a b
+
+
+end inverse

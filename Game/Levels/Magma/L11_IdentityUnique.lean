@@ -4,7 +4,7 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 10
+Level 11
 
 Introduction "
 Suppose $G$ is a set with a binary operation $*$.
@@ -17,11 +17,11 @@ Suppose $e$ and $e'$ are two identity elements, we need to prove $e=e'$.
 variable (α :Type*) [Mul α]
 
 
-Introduction "This statement proves the uniqueness of the identity element in a group. It shows that if both $e$ and $e'$ satisfy the properties of an identity element (left and right multiplication), then they must be equal."
+Introduction "
+Suppose `G` is a magma with a binary operation `*`.
+An element `e` of `G` is called an identity element if `e * x = x` and `x * e = x` for all `x` in `G`.
 
-open Mul
-
-Introduction "The following statement claims that in a multiplicative structure, if $e$ and $e'$ are both identity elements, then they must be equal. This is a fundamental result showing that identity elements are unique."
+This statement proves the uniqueness of the identity element in a group. It shows that if both `e` and `e'` satisfy the properties of an identity element (left and right multiplication), then they must be equal."
 
 
 
@@ -45,5 +45,5 @@ Statement (e e' : α) (he: Mul.isIdentity e) (he': Mul.isIdentity e') : e = e' :
 Conclusion "Note: The proof doesn't actually use the second claim of `he` or the first claim of `he'`, but they're part of the symmetric definition of identity elements.
 "
 
-NewDefinition Mul.isIdentity MulEquiv.apply_symm_apply
+NewDefinition Mul.isIdentity
 OnlyTactic unfold rw sepcialize

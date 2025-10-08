@@ -4,6 +4,7 @@ import Game.Levels.BasicFunctions
 import Game.Levels.Partition
 import Game.Levels.Equivalence
 import Game.Levels.Magma
+import Game.Levels.Monoid
 /-
 import Game.Levels.BasicFunctions
 import Game.Levels.EquivalenceRelation

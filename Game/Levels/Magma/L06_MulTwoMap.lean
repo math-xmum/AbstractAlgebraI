@@ -4,12 +4,13 @@ import Game.Levels.Lemmas.Group
 
 World "Magma"
 
-Level 5
+Level 6
 
 Introduction "The following statement claims that the function $f(x) = x^2$ (or $x * x$ in Lean notation) is a multiplication homomorphism. In other words, for any two natural numbers $x$ and $y$, $f(x * y) = f(x) * f(y)$."
 
 
 Statement (preamble:=
+  have hf : f = fun x => x * x := rfl
   refine ⟨f,?_⟩
   beta_reduce
   ) :
@@ -19,8 +20,8 @@ Statement (preamble:=
   Hint "We need to prove that for all natural numbers $x$ and $y$, $(x * y) * (x * y) = (x * x) * (y *y)$. Let's introduce these variables with `intro x y`."
   intro x y
 
-  Hint "We need to simplify the anonymous function applications. Use `simp [f]`."
-  simp only [f]
+  Hint "We need to simplify the anonymous function applications. Use `simp [hf]`."
+  simp [hf]
 
   Hint "Now we need to manipulate the left side of the equation to match the right side. Let's use the associativity of multiplication. Use `rw [Nat.mul_assoc x y (x * y)]`."
   rw [Nat.mul_assoc x y (x * y)]
