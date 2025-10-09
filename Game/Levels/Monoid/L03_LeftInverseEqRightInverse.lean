@@ -16,7 +16,7 @@ We are going to prove that `b = c`."
 
 variable {α : Type*} [Monoid α] (a b c : α)
 
-Statement (H1 : LeftInverse a b) (H2 : RightInverse a c) : b = c := by
+Statement Monoid.LeftInverse_eq_RightInverse (H1 : LeftInverse a b) (H2 : RightInverse a c) : b = c := by
   Hint "To clarify the situation, we can unfold the definitions of `LeftInverse` and `RightInverse`."
   Hint (hidden := true) "Use `unfold LeftInverse at {H1}` and `unfold RightInverse at {H2}`"
   unfold LeftInverse at H1
@@ -39,3 +39,5 @@ Statement (H1 : LeftInverse a b) (H2 : RightInverse a c) : b = c := by
   Hint "Finally, we can rewrite `1 * c` as `c` using the `one_mul` property."
   Hint (hidden := true) "Use `rw [one_mul]`."
   rw [one_mul]
+
+NewTheorem Monoid.LeftInverse_eq_RightInverse
