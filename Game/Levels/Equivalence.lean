@@ -6,6 +6,17 @@ import Game.Levels.Equivalence.L05_EquivClassesintersect
 import Game.Levels.Equivalence.L06_EquivalenceClasses
 import Game.Levels.Equivalence.L07_MaptoClasses
 import Game.Levels.Equivalence.L08_PartitionEquivalence
+import Game.Levels.Equivalence.L09_Quotient_out
+import Game.Levels.Equivalence.L10_QuotientliftUnique
+import Game.Levels.Equivalence.L11_QuotientliftExists
+
+
+
+
+
+
+
+
 
 
 
