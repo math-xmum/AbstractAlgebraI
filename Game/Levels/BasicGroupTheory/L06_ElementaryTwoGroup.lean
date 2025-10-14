@@ -3,7 +3,7 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 10
+Level 6
 
 Introduction "
 If G is a group such that a * a = 1 for all a in G, then G is abelian.
@@ -18,12 +18,14 @@ If $G$ is a group such that $a^2 = 1$ for all $a in G$, then $G$ is abelian.
 "
 -/
 
-Statement  (H: ∀ a : G, a * a = 1) : ∀ a b :G, a*b=b*a := by
+Statement (preamble :=
+  have inv_eq_self : ∀ a : G, a⁻¹ = a := ?inv_eq_self
+  pick_goal 2
+) (H: ∀ a : G, a * a = 1) : ∀ a b :G, a*b=b*a := by
   Hint "We first prove the claim that `a⁻¹ = a` for all a.
   State the claim by `have inv_eq_self : ∀ a : G, a⁻¹ = a`.
   "
-  have inv_eq_self : ∀ a : G, a⁻¹ = a := by
-    Hint "Use `intro a` to reveal the goal"
+  · Hint "Use `intro a` to reveal the goal"
     intro a
     Hint "Note that `mul_eq_one_iff_inv_eq` stats that  a*b = 1 ↔ a⁻¹ = b. Use this to rewrite the goal and then finish the proof.
     BTW: You also can use `mul_eq_one_iff_eq_inv`. "

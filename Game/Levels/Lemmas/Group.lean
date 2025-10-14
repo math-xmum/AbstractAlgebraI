@@ -1,5 +1,6 @@
 import Mathlib.Data.Set.Basic
 import Mathlib.Algebra.Group.Basic
+import Mathlib.Algebra.Group.Subgroup.Defs
 
 
 namespace Mul
@@ -137,3 +138,39 @@ abbrev Inverse [Monoid α ](a b : α) := LeftInverse a b ∧ RightInverse a b
 
 
 end inverse
+
+
+namespace Group
+
+/--
+The function defines a subgroup of a group formed by all elements that satisfy a predicate P.
+One have to show `1 ∈ P` and `∀ {a b:G}, P a → P b → P (a * b⁻¹)`.
+-/
+def subgroup_make {G : Type*} [Group G] (P : G → Prop) (one_mem : P 1) (mul_inv_mem :∀ {a b:G}, P a → P b → P (a * b⁻¹)): Subgroup G where
+  carrier := {a | P a}
+  mul_mem' := sorry
+  one_mem' := one_mem
+  inv_mem' := by
+    simp only [Set.mem_setOf_eq]
+    intro a ha
+    have := (mul_inv_mem one_mem ha)
+    simp only [one_mul] at this
+    exact this
+
+/--
+The function defines an additive subgroup of a group formed by all elements that satisfy a predicate P.
+One have to show `0 ∈ P` and `∀ {a b:G}, P a → P b → P (a - b)`.
+-/
+def addsubgroup_make {G : Type*} [AddGroup G] (P : G → Prop) (zero_mem : P 0) (add_neg_mem :∀ {a b:G}, P a → P b → P (a - b)): AddSubgroup G where
+  carrier := {a | P a}
+  add_mem' := sorry
+  zero_mem' := zero_mem
+  neg_mem' := by
+    simp only [Set.mem_setOf_eq]
+    intro a ha
+    have := (add_neg_mem zero_mem ha)
+    simp only [zero_sub] at this
+    exact this
+
+
+end Group
