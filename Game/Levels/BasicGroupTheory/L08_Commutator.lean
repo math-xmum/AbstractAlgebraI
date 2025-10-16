@@ -3,12 +3,15 @@ import Game.Metadata
 
 World "BasicGroupTheory"
 
-Level 9
+Level 8
 
 Introduction "
 The expression `⁅a,b⁆:=a * b * a⁻¹ * b⁻¹' is called the commutator of $a$ and $b$.
 
 A group is abelian if all commutators are one.
+
+Till this level, we expect you are familiar with basic laws in manipulating expressions in a group.
+You can use the power tactic `group` to simplify expressions.
 "
 
 
@@ -22,7 +25,7 @@ Statement {a b: G} : a * b = b * a ↔  a * b * a⁻¹* b⁻¹=1  := by
   · intro H
     Hint "replace `a * b'  by `b * a' using the hypothesis"
     rw [H]
-    Hint "Use `group' to finish the proof"
+    Hint "Use the tactic `group' to finish the proof"
     group
   · intro H
     Hint "apply `mul_right_cancel' twice to translate the goal"
@@ -34,7 +37,4 @@ Statement {a b: G} : a * b = b * a ↔  a * b * a⁻¹* b⁻¹=1  := by
     group
 
 
-#check mul_right_cancel
-
-NewTheorem mul_right_cancel mul_left_cancel mul_right_cancel_iff
-mul_right_cancel_iff commutatorElement_def
+NewTactic group

@@ -4,11 +4,27 @@ import Game.Levels.BasicGroupTheory.L03_cancelation
 import Game.Levels.BasicGroupTheory.L04_mul_eq_solution
 import Game.Levels.BasicGroupTheory.L05_inv_of_mul
 import Game.Levels.BasicGroupTheory.L06_mul_eq_one_iff_inv_eq
-import Game.Levels.BasicGroupTheory.L07_Subgroup_def
-import Game.Levels.BasicGroupTheory.L08_kZ
-import Game.Levels.BasicGroupTheory.L09_Commutator
-import Game.Levels.BasicGroupTheory.L10_ElementaryTwoGroup
-import Game.Levels.BasicGroupTheory.L11_Commutator
+import Game.Levels.BasicGroupTheory.L07_ElementaryTwoGroup
+import Game.Levels.BasicGroupTheory.L08_Commutator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
